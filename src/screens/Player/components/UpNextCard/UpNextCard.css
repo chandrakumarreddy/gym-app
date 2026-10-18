@@ -1,0 +1,32 @@
+.up-next {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.up-next-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 14px;
+  margin-right: 8px;
+}
+
+.up-next-eyebrow {
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.up-next-title {
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  text-overflow: ellipsis;
+}

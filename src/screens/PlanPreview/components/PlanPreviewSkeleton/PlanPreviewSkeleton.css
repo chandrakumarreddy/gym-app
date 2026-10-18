@@ -1,0 +1,63 @@
+.pps {
+  display: flex;
+  flex-direction: column;
+}
+
+.pps-title {
+  margin-top: 8px;
+}
+
+.pps-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 18px;
+  margin-top: 8px;
+}
+
+.pps-meta-item {
+  margin-right: 12px;
+}
+
+.pps-hero {
+  margin-top: 16px;
+}
+
+.pps-week-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pps-sessions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.pps-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.pps-dot {
+  margin-right: 12px;
+}
+
+.pps-row-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pps-row-sub {
+  margin-top: 2px;
+}
+
+.pps-locked {
+  margin-top: 8px;
+}

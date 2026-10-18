@@ -1,0 +1,51 @@
+.tile {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.tile-badge {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.tile-lock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.tile-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.tile-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--on-art);
+}
+
+.tile-caption {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--on-art-muted);
+}
+
+.tile-progress {
+  margin-top: 8px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--meter-track);
+  overflow: hidden;
+}
+
+.tile-progress-fill {
+  height: 100%;
+  background-color: var(--on-art);
+}

@@ -1,0 +1,32 @@
+.quiz-exp-count {
+  min-width: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.quiz-exp-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.quiz-exp-h3 {
+  margin-top: 24px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.quiz-exp-seg {
+  margin-top: 12px;
+}
+
+.quiz-exp-chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}

@@ -1,0 +1,97 @@
+.complete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-top: 8px;
+  background-color: var(--bg);
+}
+
+.complete-scroll {
+  flex: 1;
+  padding: 0 20px 120px;
+}
+
+.complete-title {
+  margin-top: 28px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  text-align: center;
+  color: var(--text);
+}
+
+.complete-meta {
+  margin-top: 8px;
+  font-size: 15px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.complete-grid {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+}
+
+.complete-grid-2 {
+  margin-top: 12px;
+}
+
+.complete-gap {
+  width: 12px;
+}
+
+.complete-more {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.complete-feel-q {
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.complete-feels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.complete-feel {
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.complete-footer {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 34px;
+  display: flex;
+  flex-direction: row;
+}
+
+.complete-fade {
+  position: absolute;
+  top: -40px;
+  left: -20px;
+  right: -20px;
+  bottom: -34px;
+  background-image: var(--footer-fade);
+}
+
+.complete-share {
+  min-width: 120px;
+  width: 34%;
+}
+
+.complete-done {
+  flex: 1;
+  margin-left: 12px;
+}

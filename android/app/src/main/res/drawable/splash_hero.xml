@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mirrors the Welcome hero: hero-grad glow, hero-fade, and the two rings. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/bg" />
+    <item android:height="556dp" android:gravity="top|fill_horizontal">
+        <shape>
+            <gradient android:type="radial"
+                android:centerX="0.8" android:centerY="0.2"
+                android:gradientRadius="120%"
+                android:startColor="@color/hero_1"
+                android:centerColor="@color/hero_2"
+                android:endColor="@color/hero_3" />
+        </shape>
+    </item>
+    <item android:height="556dp" android:gravity="top|fill_horizontal">
+        <shape>
+            <gradient android:angle="270"
+                android:centerY="0.57"
+                android:startColor="@color/bg_clear"
+                android:centerColor="@color/bg_clear"
+                android:endColor="@color/bg" />
+        </shape>
+    </item>
+    <item android:width="360dp" android:height="360dp" android:gravity="center">
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="@color/ring_strong" />
+        </shape>
+    </item>
+    <item android:width="260dp" android:height="260dp" android:gravity="center">
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="@color/ring_soft" />
+        </shape>
+    </item>
+</layer-list>

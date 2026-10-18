@@ -1,0 +1,23 @@
+.select-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.select-field-icon {
+  margin-right: 12px;
+}
+
+.select-field-value {
+  flex: 1;
+  font-size: 15px;
+  color: var(--text);
+  text-overflow: ellipsis;
+}

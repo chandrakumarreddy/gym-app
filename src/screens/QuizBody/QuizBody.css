@@ -1,0 +1,59 @@
+.quiz-body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.quiz-body-count {
+  min-width: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.quiz-body-weight-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.quiz-body-h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.quiz-body-h3-gap {
+  margin-top: 24px;
+}
+
+.quiz-body-ruler {
+  margin-top: 16px;
+}
+
+.quiz-body-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.quiz-body-chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.quiz-body-sheet {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 28px;
+}
+
+.quiz-body-sheet-done {
+  margin-top: 24px;
+}

@@ -1,0 +1,69 @@
+.quiz-sched-count {
+  min-width: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.quiz-sched-picker {
+  margin-top: 32px;
+}
+
+.quiz-sched-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.quiz-sched-hint-unit {
+  color: var(--muted);
+}
+
+.quiz-sched-hint-tone {
+  color: var(--ember);
+}
+
+.quiz-sched-h3 {
+  margin-top: 24px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.quiz-sched-h3-first {
+  margin-top: 32px;
+}
+
+.quiz-sched-days {
+  margin-top: 12px;
+}
+
+.quiz-sched-shake {
+  animation: quiz-sched-shake 300ms ease-in-out;
+}
+
+@keyframes quiz-sched-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.quiz-sched-len {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}

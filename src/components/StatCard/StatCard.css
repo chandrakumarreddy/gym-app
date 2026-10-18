@@ -1,0 +1,54 @@
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.stat-card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stat-card-icon {
+  margin-right: 6px;
+}
+
+.stat-card-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stat-card-value-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 4px;
+}
+
+.stat-card-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stat-card-value-ember {
+  color: var(--ember);
+}
+
+.stat-card-value-green {
+  color: var(--green);
+}
+
+.stat-card-unit {
+  margin-left: 3px;
+  margin-bottom: 3px;
+  font-size: 13px;
+  color: var(--muted);
+}

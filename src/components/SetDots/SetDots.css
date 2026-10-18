@@ -1,0 +1,20 @@
+.set-dots {
+  display: flex;
+  flex-direction: row;
+}
+
+.set-dot {
+  width: 22px;
+  height: 6px;
+  margin-right: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--meter-track);
+}
+
+.set-dot-done {
+  background-color: var(--ember);
+}
+
+.set-dot-current {
+  background-color: var(--on-video);
+}

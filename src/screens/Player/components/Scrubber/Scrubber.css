@@ -1,0 +1,45 @@
+.scrubber {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.scrubber-hit {
+  position: relative;
+  height: 24px;
+  justify-content: center;
+}
+
+.scrubber-track {
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: var(--scrub-track);
+}
+
+.scrubber-fill {
+  height: 4px;
+  background-color: var(--ember);
+}
+
+.scrubber-knob {
+  position: absolute;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: var(--radius-pill);
+  background-color: var(--on-video);
+}
+
+.scrubber-times {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.scrubber-time {
+  font-size: 11px;
+  color: var(--on-video-dim);
+}

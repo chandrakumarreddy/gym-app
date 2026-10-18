@@ -1,0 +1,9 @@
+.cd-sk {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cd-sk-gap {
+  margin-left: 10px;
+}

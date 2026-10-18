@@ -1,0 +1,17 @@
+.or-divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.or-divider-rule {
+  flex: 1;
+  height: 1px;
+  background-color: var(--line);
+}
+
+.or-divider-label {
+  margin: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}

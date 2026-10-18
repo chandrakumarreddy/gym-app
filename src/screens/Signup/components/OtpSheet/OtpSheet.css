@@ -1,0 +1,30 @@
+.otp {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 34px;
+}
+
+.otp-hint {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--muted);
+}
+
+.otp-code {
+  letter-spacing: 6px;
+}
+
+.otp-error {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.otp-cta {
+  margin-top: 16px;
+}
+
+.otp-hint-sk {
+  margin-bottom: 12px;
+}

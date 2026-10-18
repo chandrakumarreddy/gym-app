@@ -1,0 +1,19 @@
+.offer-sk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.offer-sk-big {
+  margin-top: 12px;
+}
+
+.offer-sk-line {
+  margin-top: 8px;
+}

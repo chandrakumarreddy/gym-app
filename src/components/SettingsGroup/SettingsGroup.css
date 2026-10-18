@@ -1,0 +1,64 @@
+.settings-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-group-title {
+  margin: 0 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--dim);
+}
+
+.settings-group-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+  overflow: hidden;
+}
+
+.settings-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 16px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--line);
+}
+
+.settings-row-last {
+  border-bottom-width: 0;
+}
+
+.settings-row-icon {
+  margin-right: 12px;
+}
+
+.settings-row-label {
+  flex: 1;
+  font-size: 15px;
+}
+
+.settings-row-label-default {
+  color: var(--text);
+}
+
+.settings-row-label-danger {
+  color: var(--red);
+}
+
+.settings-row-value {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.settings-row-chev {
+  margin-left: 6px;
+}

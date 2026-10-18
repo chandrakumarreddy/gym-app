@@ -1,0 +1,19 @@
+.restlog-sk-subtitle {
+  flex: 1;
+}
+
+.restlog-sk-stepper-value {
+  position: absolute;
+  left: 61px;
+  right: 61px;
+  bottom: 13px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+}
+
+.restlog-sk-tip {
+  flex: 1;
+}

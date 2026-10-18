@@ -1,0 +1,29 @@
+.status-dot {
+  display: flex;
+  margin-left: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  align-items: center;
+  justify-content: center;
+}
+
+.status-dot-gap {
+  margin-left: 10px;
+}
+
+.status-dot-done {
+  background-color: var(--ember);
+}
+
+.status-dot-next {
+  width: 32px;
+  height: 32px;
+  background-color: var(--text);
+}
+
+.status-dot-todo {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--line-strong);
+}

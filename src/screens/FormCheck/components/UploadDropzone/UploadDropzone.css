@@ -1,0 +1,75 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 16px;
+  border-radius: var(--radius-card);
+  border-width: 2px;
+  border-style: dashed;
+  border-color: var(--line-strong);
+  background-color: var(--surface);
+}
+
+.dropzone-failed {
+  border-color: var(--ember-line);
+}
+
+.dropzone-icon {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ember-soft);
+}
+
+.dropzone-icon-ready {
+  background-color: var(--green-soft);
+}
+
+.dropzone-title {
+  margin-top: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+.dropzone-hint {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.dropzone-track {
+  width: 100%;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-3);
+  overflow: hidden;
+}
+
+.dropzone-fill {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--ember);
+}
+
+.dropzone-fill-failed {
+  background-color: var(--dim);
+}
+
+.dropzone-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.dropzone-btn {
+  height: 40px;
+  margin: 0 4px;
+}

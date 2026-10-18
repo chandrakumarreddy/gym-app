@@ -39,6 +39,10 @@ export default defineConfig({
   resolve: {
     alias: { "@": "./src" },
   },
+  // Lynx Android can't load relative asset URLs; inline images (all are small) so they work in dev and release.
+  output: {
+    dataUriLimit: { image: 64 * 1024 },
+  },
   server: {
     port: 3000,
     strictPort: true,

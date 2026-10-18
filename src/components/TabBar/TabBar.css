@@ -1,0 +1,28 @@
+.tab-bar {
+  display: flex;
+  flex-direction: row;
+  height: var(--tabbar-h);
+  padding-bottom: 22px;
+  background-color: var(--tabbar-bg);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--line);
+}
+
+.tab-bar-item {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-bar-label {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.tab-bar-label-on {
+  color: var(--ember);
+}

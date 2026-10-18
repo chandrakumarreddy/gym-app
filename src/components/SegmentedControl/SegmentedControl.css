@@ -1,0 +1,43 @@
+.segmented {
+  display: flex;
+  flex-direction: row;
+  height: 44px;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.segmented-compact {
+  width: 120px;
+  height: 36px;
+  padding: 3px;
+}
+
+.segmented-item {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.segmented-item-active {
+  background-color: var(--text);
+}
+
+.segmented-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.segmented-label-active {
+  color: var(--on-light);
+}
+
+.segmented-lock {
+  margin-left: 4px;
+}

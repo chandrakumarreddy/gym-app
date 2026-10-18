@@ -1,0 +1,36 @@
+import { defineStrings } from "@/i18n/define.ts";
+
+export const quizBody = defineStrings(
+  {
+    "quizBody.title": "A few details to set your intensity",
+    "quizBody.weight": "Weight",
+    "quizBody.height": "Height",
+    "quizBody.age": "Age",
+    "quizBody.unit.kg": "kg",
+    "quizBody.unit.lb": "lb",
+    "quizBody.unit.cm": "cm",
+    "quizBody.limits": "Anything we should work around?",
+    "quizBody.lowerBack": "Lower back",
+    "quizBody.knees": "Knees",
+    "quizBody.shoulders": "Shoulders",
+    "quizBody.wrists": "Wrists",
+    "quizBody.nothing": "Nothing",
+    "quizBody.cta": "Build my plan",
+  },
+  {
+    "quizBody.title": "आपकी इंटेंसिटी तय करने के लिए कुछ जानकारी",
+    "quizBody.weight": "वज़न",
+    "quizBody.height": "लंबाई",
+    "quizBody.age": "उम्र",
+    "quizBody.unit.kg": "kg",
+    "quizBody.unit.lb": "lb",
+    "quizBody.unit.cm": "cm",
+    "quizBody.limits": "किसी चीज़ का ध्यान रखना है?",
+    "quizBody.lowerBack": "कमर का निचला हिस्सा",
+    "quizBody.knees": "घुटने",
+    "quizBody.shoulders": "कंधे",
+    "quizBody.wrists": "कलाई",
+    "quizBody.nothing": "कुछ नहीं",
+    "quizBody.cta": "मेरा प्लान बनाएं",
+  },
+);

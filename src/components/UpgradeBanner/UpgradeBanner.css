@@ -1,0 +1,39 @@
+.upgrade-banner {
+  flex-direction: row;
+  align-items: center;
+  padding: 14px;
+  border-radius: var(--radius-card);
+  background-image: var(--gold-banner-grad);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--gold-line);
+}
+
+.upgrade-banner-icon {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-image: var(--gold-grad);
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.upgrade-banner-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.upgrade-banner-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.upgrade-banner-subtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}

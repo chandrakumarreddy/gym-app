@@ -1,0 +1,31 @@
+.day-picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.day {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--line-strong);
+  align-items: center;
+  justify-content: center;
+}
+
+.day-on {
+  background-color: var(--ember);
+  border-color: var(--ember);
+}
+
+.day-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.day-label-on {
+  color: var(--on-accent);
+}

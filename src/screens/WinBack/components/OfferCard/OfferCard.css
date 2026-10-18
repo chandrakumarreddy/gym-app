@@ -1,0 +1,64 @@
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px;
+  border-radius: var(--radius-card);
+  background-image: var(--art-dark);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ember-line);
+}
+
+.offer-card-pill {
+  display: flex;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--ember);
+  align-items: center;
+  justify-content: center;
+}
+
+.offer-card-pill-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-ember);
+}
+
+.offer-card-big {
+  margin-top: 12px;
+  font-size: 52px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--text);
+}
+
+.offer-card-sub {
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+.offer-card-price {
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.offer-card-strike {
+  color: var(--dim);
+  text-decoration: line-through;
+}
+
+.offer-card-strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.offer-card-rest {
+  color: var(--muted);
+}

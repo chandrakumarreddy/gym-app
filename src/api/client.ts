@@ -1,4 +1,6 @@
 export const API_BASE_URL = "https://api.fitcue.app/v1";
+export const USE_MOCKS = true;
+export const MOCK_LATENCY_MS = 400;
 
 export class ApiError extends Error {
   constructor(

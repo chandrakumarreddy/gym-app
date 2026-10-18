@@ -1,0 +1,217 @@
+.library {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.library-scroll {
+  flex: 1;
+  width: 100%;
+}
+
+.library-top-inset {
+  height: 8px;
+}
+
+.library-top {
+  padding-top: 8px;
+}
+
+.library-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.library-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.library-pad {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.library-header {
+  padding: 4px 0 14px;
+}
+
+.library-mt8 {
+  margin-top: 8px;
+}
+
+.library-mt16 {
+  margin-top: 16px;
+}
+
+.library-mt24 {
+  margin-top: 24px;
+}
+
+.library-gap-r {
+  margin-right: 8px;
+}
+
+.library-hscroll {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.library-hscroll-end {
+  width: 8px;
+  height: 1px;
+}
+
+.library-chip {
+  height: 36px;
+  padding: 0 14px;
+  margin-right: 8px;
+}
+
+.library-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0 12px;
+}
+
+.library-section-title {
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.library-section-action {
+  font-size: 13px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--ember);
+}
+
+.library-coach {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.library-coach-name {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--muted);
+}
+
+.library-free-pill {
+  display: flex;
+  height: 24px;
+  padding: 0 9px;
+  margin-left: 10px;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-3);
+}
+
+.library-free-pill-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.library-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.library-card-text {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: var(--text);
+  text-align: center;
+}
+
+.library-bottom-pad {
+  height: 16px;
+}
+
+.library-sheet {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 34px;
+}
+
+.library-sheet-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.library-sheet-chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.library-skel-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.library-skel-hrow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 20px;
+  overflow: hidden;
+}
+
+.library-skel-card-title {
+  margin-top: 10px;
+}
+
+.library-skel-card-caption {
+  margin-top: 2px;
+}
+
+.library-skel-coach-name {
+  margin-top: 6px;
+}
+
+.library-skel-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.library-skel-thumb {
+  margin-right: 14px;
+}
+
+.library-skel-avatar {
+  margin-right: 12px;
+}
+
+.library-skel-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.library-skel-gap {
+  margin-top: 8px;
+}

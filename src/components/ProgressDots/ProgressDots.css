@@ -1,0 +1,36 @@
+.progress-dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.progress-dot {
+  width: 6px;
+  height: 6px;
+  margin: 0 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--line-strong);
+}
+
+.progress-dot-on {
+  width: 22px;
+  background-color: var(--ember);
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.progress-bar-seg {
+  flex: 1;
+  height: 4px;
+  margin: 0 2px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-3);
+}
+
+.progress-bar-seg-on {
+  background-color: var(--ember);
+}

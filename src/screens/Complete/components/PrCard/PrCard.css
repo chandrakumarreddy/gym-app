@@ -1,0 +1,31 @@
+.pr-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--green-soft);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--green-line);
+}
+
+.pr-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 12px;
+}
+
+.pr-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pr-card-sub {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}

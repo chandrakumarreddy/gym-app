@@ -1,0 +1,48 @@
+.art {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.art-v1 {
+  background-image: var(--art-v1);
+}
+
+.art-v2 {
+  background-image: var(--art-v2);
+}
+
+.art-v3 {
+  background-image: var(--art-v3);
+}
+
+.art-v4 {
+  background-image: var(--art-v4);
+}
+
+.art-dark {
+  background-image: var(--art-dark);
+}
+
+.art-figure {
+  opacity: 0.9;
+}
+
+.art-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--art-scrim);
+}

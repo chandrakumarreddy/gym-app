@@ -1,0 +1,59 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.stepper-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stepper-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.stepper-btn {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-3);
+  align-items: center;
+  justify-content: center;
+  transition: transform 100ms ease-out;
+}
+
+.stepper-btn-disabled {
+  opacity: 0.4;
+}
+
+.stepper-value-wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.stepper-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.stepper-unit {
+  margin-left: 3px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}

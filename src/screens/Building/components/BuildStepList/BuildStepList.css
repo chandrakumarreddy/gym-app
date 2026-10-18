@@ -1,0 +1,69 @@
+.step-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.step-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.step-row-gap {
+  margin-top: 16px;
+}
+
+.step-dot {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  margin-right: 12px;
+  border-radius: var(--radius-pill);
+  align-items: center;
+  justify-content: center;
+}
+
+.step-dot-done {
+  background-color: var(--ember);
+}
+
+.step-dot-active {
+  border-width: 2.5px;
+  border-style: solid;
+  border-color: var(--surface-3);
+  border-top-color: var(--ember);
+  animation: step-spin 900ms linear infinite;
+}
+
+.step-dot-pending {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--line-strong);
+}
+
+.step-label {
+  flex: 1;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--text);
+}
+
+.step-label-pending {
+  color: var(--muted);
+}
+
+@keyframes step-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

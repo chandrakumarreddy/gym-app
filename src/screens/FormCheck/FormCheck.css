@@ -1,0 +1,107 @@
+.fc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.fc-scroll {
+  flex: 1;
+}
+
+.fc-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 128px;
+}
+
+.fc-exercise {
+  margin-top: 16px;
+}
+
+.fc-coach {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.fc-coach-label {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.fc-coach-sk {
+  flex: 1;
+}
+
+.fc-h3 {
+  margin-top: 24px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fc-packs {
+  margin-top: 12px;
+}
+
+.fc-packs-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.fc-packs-error-text {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.fc-premium {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 4px;
+  padding: 6px 0;
+}
+
+.fc-premium-label {
+  flex: 1;
+  margin-left: 8px;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+.fc-status {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ember);
+}
+
+.fc-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 20px 24px;
+  background-image: var(--footer-fade);
+}
+
+.fc-sheet-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 24px;
+}
+
+.fc-sent-body {
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--muted);
+}

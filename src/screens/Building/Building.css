@@ -1,0 +1,73 @@
+.building {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 36px 20px 0;
+  background-color: var(--bg);
+}
+
+.building-ring .rest-ring-rotator {
+  transition: transform 700ms ease-out;
+}
+
+.building-ring .rest-ring-value {
+  font-size: 56px;
+  font-weight: bold;
+  letter-spacing: -1.5px;
+}
+
+.building-title {
+  margin-top: 32px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: var(--text);
+}
+
+.building-sub {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.building-steps {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.building-error {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 32px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.building-error-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.building-error-body {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted);
+}
+
+.building-error-cta {
+  margin-top: 12px;
+}

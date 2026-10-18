@@ -1,0 +1,5 @@
+.video {
+  position: relative;
+  overflow: hidden;
+  background-image: var(--art-dark);
+}

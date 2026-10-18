@@ -1,24 +1,108 @@
 .button {
-  height: 52px;
+  height: 56px;
   padding: 0 24px;
   border-radius: var(--radius-button);
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
+.button-sm {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+}
+
+.button-full {
+  width: 100%;
+}
+
+.button-block {
+  align-self: stretch;
+}
+
 .button-primary {
-  background-color: var(--ember);
+  background-image: var(--ember-grad);
+  box-shadow: 0 10px 30px var(--ember-glow);
 }
 
 .button-ghost {
+  background-color: var(--surface-2);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--surface-3);
+  border-color: var(--line);
+}
+
+.button-light {
+  background-color: var(--text);
+}
+
+.button-gold {
+  background-image: var(--gold-grad);
+}
+
+.button-link {
+  height: 44px;
+}
+
+.button-disabled {
+  opacity: 0.4;
 }
 
 .button-label {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   color: var(--text);
+}
+
+.button-label-gap {
+  margin-left: 8px;
+}
+
+.button-label-sm {
+  font-size: 14px;
+}
+
+.button-label-primary {
+  color: var(--on-accent);
+}
+
+.button-label-light {
+  color: var(--on-light);
+}
+
+.button-label-gold {
+  color: var(--on-gold);
+}
+
+.button-label-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.button-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--ring-strong);
+  border-top-color: var(--on-accent);
+  animation: button-spin 800ms linear infinite;
+}
+
+.button-spinner-light,
+.button-spinner-gold {
+  border-top-color: var(--ink);
+}
+
+@keyframes button-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,0 +1,57 @@
+.cks-lb-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.cks-lb-rank {
+  display: flex;
+  width: 28px;
+}
+
+.cks-lb-name {
+  display: flex;
+  flex: 1;
+  margin-left: 12px;
+}
+
+.cks-badge-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.cks-badge-body {
+  display: flex;
+  flex: 1;
+  margin-left: 12px;
+}
+
+.cks-pro-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.cks-pro-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 12px;
+}
+
+.cks-pro-caption {
+  margin-top: 8px;
+}

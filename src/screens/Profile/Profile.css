@@ -1,0 +1,211 @@
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.profile-scroll {
+  flex: 1;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 20px 24px;
+}
+
+.profile-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 0 18px;
+}
+
+.profile-id {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 12px;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+.profile-tier {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.profile-period {
+  margin-left: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile-plan {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.profile-plan-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-plan-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.profile-cap {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile-plan-name {
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.profile-manage {
+  height: 40px;
+}
+
+.profile-plan-status {
+  margin-top: 12px;
+}
+
+.profile-go {
+  margin-top: 14px;
+}
+
+.profile-family {
+  margin-top: 12px;
+}
+
+.profile-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+  overflow: hidden;
+}
+
+.profile-group-first {
+  margin-top: 20px;
+}
+
+.profile-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--line-strong);
+  border-top-color: var(--ember);
+  animation: profile-spin 800ms linear infinite;
+}
+
+@keyframes profile-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-toast {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  font-size: 13px;
+}
+
+.profile-toast-ok {
+  color: var(--green);
+}
+
+.profile-toast-error {
+  color: var(--ember);
+}
+
+.profile-sheet {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 24px;
+}
+
+.profile-sheet-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profile-sheet-label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile-sheet-body {
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--muted);
+}
+
+.profile-sheet-preview {
+  margin-bottom: 12px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.profile-picker {
+  margin-bottom: 12px;
+}
+
+.profile-segment {
+  margin-bottom: 16px;
+}
+
+.profile-name-skel {
+  margin: 3px 0;
+}
+
+.profile-retry {
+  align-self: flex-start;
+}
+
+.profile-value-skel,
+.profile-toggle-skel {
+  margin-left: 8px;
+}

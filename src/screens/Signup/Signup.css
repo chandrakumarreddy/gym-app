@@ -1,0 +1,97 @@
+.su {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.su-header {
+  padding-top: 4px;
+}
+
+.su-scroll {
+  flex: 1;
+  width: 100%;
+}
+
+.su-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 40px;
+}
+
+.su-title {
+  margin-top: 32px;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: bold;
+  letter-spacing: -0.8px;
+  color: var(--text);
+}
+
+.su-title-top {
+  margin-top: 8px;
+}
+
+.su-copy {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--muted);
+}
+
+.su-auth {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.su-auth-gap {
+  margin-top: 12px;
+}
+
+.su-error {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.su-error-text {
+  margin-left: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.su-or {
+  margin-top: 24px;
+}
+
+.su-email {
+  margin-top: 24px;
+}
+
+.su-field-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.su-legal {
+  margin-top: 32px;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--dim);
+}
+
+.su-legal-note {
+  margin-top: 0;
+}
+
+.su-link {
+  color: var(--muted);
+  text-decoration: underline;
+}

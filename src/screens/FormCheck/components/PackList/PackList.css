@@ -1,0 +1,98 @@
+.pack-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.pack {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 52px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-button);
+  background-color: var(--surface);
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--line-strong);
+}
+
+.pack-on {
+  background-image: var(--selected-grad);
+  border-color: var(--ember);
+}
+
+.pack-radio {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  border-radius: var(--radius-pill);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--line-strong);
+  align-items: center;
+  justify-content: center;
+}
+
+.pack-radio-on {
+  border-color: var(--ember);
+  background-color: var(--ember);
+}
+
+.pack-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pack-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pack-subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.pack-price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.pack-price {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pack-original {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--dim);
+  text-decoration: line-through;
+}
+
+.pack-badge {
+  display: flex;
+  position: absolute;
+  top: -11px;
+  right: 14px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--ember);
+  align-items: center;
+  justify-content: center;
+}
+
+.pack-badge-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-ember);
+}

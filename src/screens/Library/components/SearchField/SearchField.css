@@ -1,0 +1,34 @@
+.search-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.search-field-input {
+  flex: 1;
+  height: 46px;
+  margin-left: 10px;
+  font-size: 15px;
+  color: var(--text);
+  caret-color: var(--ember);
+}
+
+.search-field-clear {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-field-input::placeholder {
+  color: var(--dim);
+  font-size: 15px;
+}

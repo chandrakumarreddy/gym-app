@@ -1,0 +1,49 @@
+.pro-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--gold-grad);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.pro-badge-sm {
+  height: 22px;
+  padding: 0 7px;
+}
+
+.pro-badge-md {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-chip);
+}
+
+.pro-badge-tile {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+}
+
+.pro-badge-icon {
+  width: 28px;
+  height: 22px;
+}
+
+.pro-badge-label {
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--on-gold);
+}
+
+.pro-badge-label-md {
+  font-size: 12px;
+}
+
+.pro-badge-mini {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--gold);
+}

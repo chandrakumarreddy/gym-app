@@ -1,0 +1,29 @@
+.text-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-2);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.text-field-invalid {
+  border-color: var(--red);
+}
+
+.text-field-prefix {
+  margin-right: 8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.text-field-input {
+  flex: 1;
+  height: 52px;
+  font-size: 15px;
+  color: var(--text);
+}

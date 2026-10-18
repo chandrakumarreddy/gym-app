@@ -1,0 +1,32 @@
+.pch-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--gold-line);
+}
+
+.pch-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 12px;
+}
+
+.pch-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+.pch-caption {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}

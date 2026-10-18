@@ -1,0 +1,36 @@
+.program-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.program-card-lock {
+  display: flex;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.program-card-title {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+.program-card-caption {
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--muted);
+  text-overflow: ellipsis;
+}

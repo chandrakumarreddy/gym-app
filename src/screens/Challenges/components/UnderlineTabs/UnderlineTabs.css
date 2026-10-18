@@ -1,0 +1,30 @@
+.u-tabs {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--line);
+}
+
+.u-tab {
+  margin-right: 22px;
+  padding-bottom: 10px;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+}
+
+.u-tab-active {
+  border-bottom-color: var(--ember);
+}
+
+.u-tab-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.u-tab-label-active {
+  color: var(--text);
+}

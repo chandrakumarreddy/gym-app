@@ -1,0 +1,32 @@
+.text-skeleton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-skeleton-ghost {
+  opacity: 0;
+}
+
+.text-skeleton-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-skeleton-start {
+  align-items: flex-start;
+}
+
+.text-skeleton-center {
+  align-items: center;
+}
+
+.text-skeleton-end {
+  align-items: flex-end;
+}

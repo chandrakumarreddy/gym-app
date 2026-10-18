@@ -1,0 +1,14 @@
+.coach-tip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.coach-tip-text {
+  flex: 1;
+  margin-left: 8px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--gold);
+}

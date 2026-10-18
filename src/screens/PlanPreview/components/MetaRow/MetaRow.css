@@ -1,0 +1,19 @@
+.meta-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.meta-label {
+  margin-left: 5px;
+  font-size: 13px;
+  color: var(--muted);
+}

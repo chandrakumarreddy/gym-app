@@ -26,5 +26,7 @@ class GymApplication : Application() {
         LynxServiceCenter.inst().registerService(LynxHttpService)
 
         LynxEnv.inst().init(this, null, null, null)
+        LynxEnv.inst().registerModule("NativeLocalStorageModule", NativeLocalStorageModule::class.java)
+        LynxEnv.inst().registerModule("NativeSystemBarsModule", NativeSystemBarsModule::class.java)
     }
 }

@@ -1,0 +1,47 @@
+.success-badge {
+  display: flex;
+  align-items: center;
+  margin-top: 44px;
+}
+
+.success-badge-halo2 {
+  display: flex;
+  width: 152px;
+  height: 152px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background-color: var(--ember-halo-2);
+  animation: success-badge-in 400ms ease-out;
+}
+
+.success-badge-halo1 {
+  display: flex;
+  width: 124px;
+  height: 124px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background-color: var(--ember-halo-1);
+}
+
+.success-badge-core {
+  display: flex;
+  width: 96px;
+  height: 96px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background-image: var(--ember-grad);
+}
+
+@keyframes success-badge-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

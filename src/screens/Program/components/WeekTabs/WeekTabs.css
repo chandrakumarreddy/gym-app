@@ -1,0 +1,61 @@
+.week-tabs {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--line);
+}
+
+.week-tabs-scroll {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.week-tab {
+  display: flex;
+  flex-direction: column;
+  margin-right: 22px;
+  flex-shrink: 0;
+}
+
+.week-tab-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.week-tab-label {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.week-tab-label-on {
+  color: var(--text);
+}
+
+.week-tab-lock {
+  margin-left: 4px;
+}
+
+.week-tab-bar {
+  height: 2px;
+  background-color: transparent;
+}
+
+.week-tab-bar-on {
+  background-color: var(--ember);
+}
+
+.week-tabs-skel {
+  overflow: hidden;
+}
+
+.week-tab-skel-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20px;
+}

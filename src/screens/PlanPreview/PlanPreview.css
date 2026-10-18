@@ -1,0 +1,120 @@
+.pp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.pp-scroll {
+  flex: 1;
+  width: 100%;
+}
+
+.pp-body {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 150px;
+}
+
+.pp-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  color: var(--ember);
+}
+
+.pp-title {
+  margin-top: 8px;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: bold;
+  letter-spacing: -0.8px;
+  color: var(--text);
+}
+
+.pp-meta {
+  margin-top: 8px;
+}
+
+.pp-hero {
+  margin-top: 16px;
+}
+
+.pp-coach {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pp-coach-name {
+  flex: 1;
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pp-week-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pp-week-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pp-sessions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.pp-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--line-strong);
+}
+
+.pp-locked {
+  margin-top: 8px;
+}
+
+.pp-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.pp-error-text {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.pp-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 20px 34px;
+}
+
+.pp-footer-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  bottom: 0;
+  background-image: var(--footer-fade);
+}

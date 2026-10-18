@@ -1,0 +1,43 @@
+.player-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player-controls-side {
+  flex-direction: row;
+  width: 52px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-2);
+}
+
+.player-controls-side-on {
+  background-color: var(--surface-3);
+}
+
+.player-controls-speed {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-right: 2px;
+}
+
+.player-controls-btn {
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-controls-play {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-pill);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text);
+}

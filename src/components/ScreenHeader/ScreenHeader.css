@@ -1,0 +1,79 @@
+.screen-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 20px;
+}
+
+.screen-header-nav,
+.screen-header-overlay {
+  height: 56px;
+}
+
+.screen-header-solid {
+  height: 56px;
+  background-color: var(--bg);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--line);
+}
+
+.screen-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.screen-header-large {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.screen-header-large-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.screen-header-large-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.screen-header-side {
+  display: flex;
+  flex-direction: row;
+  min-width: 40px;
+}
+
+.screen-header-center {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.screen-header-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.screen-header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+.screen-header-title-video {
+  color: var(--on-video);
+}
+
+.screen-header-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}

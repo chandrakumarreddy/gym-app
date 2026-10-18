@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg">#FF0D0B0A</color>
+    <color name="bg_clear">#000D0B0A</color>
+    <color name="ember">#FFFF5B1F</color>
+    <color name="ember_2">#FFFF8A3D</color>
+    <color name="ember_grad_end">#FFE2410F</color>
+    <color name="hero_1">#FFFFC48A</color>
+    <color name="hero_2">#FFFF7D3A</color>
+    <color name="hero_3">#FFA43410</color>
+    <color name="ring_strong">#40FFFFFF</color>
+    <color name="ring_soft">#2EFFFFFF</color>
+    <color name="on_ember">#FFFFFFFF</color>
 </resources>

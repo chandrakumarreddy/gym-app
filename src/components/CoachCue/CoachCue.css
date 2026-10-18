@@ -1,0 +1,23 @@
+.coach-cue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-strong);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--glass-line);
+  opacity: 1;
+  transition: opacity 240ms ease-out;
+}
+
+.coach-cue-hidden {
+  opacity: 0;
+}
+
+.coach-cue-text {
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--on-video);
+}

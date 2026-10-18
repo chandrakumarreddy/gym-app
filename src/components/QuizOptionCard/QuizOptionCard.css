@@ -1,0 +1,66 @@
+.quiz-option {
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.quiz-option-selected {
+  background-image: var(--selected-grad);
+  border-color: var(--ember);
+}
+
+.quiz-option-icon {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ember-soft);
+  margin-right: 14px;
+}
+
+.quiz-option-icon-selected {
+  background-image: var(--ember-grad);
+}
+
+.quiz-option-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.quiz-option-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.quiz-option-caption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.quiz-option-radio {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--line-strong);
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+}
+
+.quiz-option-radio-on {
+  background-color: var(--ember);
+  border-color: var(--ember);
+}

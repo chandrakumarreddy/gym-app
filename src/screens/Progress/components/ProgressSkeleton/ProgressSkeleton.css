@@ -1,0 +1,36 @@
+.psk-ghost {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.psk-ghost-text {
+  color: transparent;
+}
+
+.psk-ghost-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.psk-stat-value {
+  width: 36px;
+}
+
+.psk-record-title {
+  width: 60%;
+}
+
+.psk-record-value {
+  margin-left: 12px;
+}
+
+.psk-empty-line {
+  margin-bottom: 12px;
+}
+
+.psk-empty-text {
+  font-size: 13px;
+  text-align: center;
+}

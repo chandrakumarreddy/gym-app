@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+    <group android:name="disc" android:pivotX="512" android:pivotY="512">
+        <path android:pathData="M200,512 A312,312 0 1,1 824,512 A312,312 0 1,1 200,512 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="linear"
+                    android:startX="200" android:startY="200"
+                    android:endX="824" android:endY="824">
+                    <item android:offset="0" android:color="@color/ember_2" />
+                    <item android:offset="0.55" android:color="@color/ember" />
+                    <item android:offset="1" android:color="@color/ember_grad_end" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <path android:pathData="M200,512 A312,312 0 1,1 824,512 A312,312 0 1,1 200,512 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="radial"
+                    android:centerX="337" android:centerY="237"
+                    android:gradientRadius="468">
+                    <item android:offset="0" android:color="#47FFFFFF" />
+                    <item android:offset="1" android:color="#00FFFFFF" />
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+    <group android:name="bell" android:pivotX="512" android:pivotY="512"
+        android:scaleX="0.6" android:scaleY="0.6">
+        <group android:translateY="-20">
+            <path android:pathData="M372,540 V372 C372,236 652,236 652,372 V540"
+                android:strokeColor="@color/on_ember" android:strokeWidth="84"
+                android:strokeLineCap="round" />
+            <path android:pathData="M431.2,842 A240,240 0 1,1 592.8,842 Z"
+                android:fillColor="@color/on_ember" />
+            <path android:name="pulse"
+                android:pathData="M330,618 H418 L452,578 L486,618 H506 L542,508 L588,716 L620,618 H694"
+                android:strokeColor="@color/ember" android:strokeWidth="38"
+                android:strokeLineCap="round" android:strokeLineJoin="round"
+                android:trimPathEnd="0" />
+        </group>
+    </group>
+</vector>

@@ -1,0 +1,60 @@
+.rest-ring {
+  position: relative;
+}
+
+.rest-ring-track,
+.rest-ring-arc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-radius: var(--radius-pill);
+}
+
+.rest-ring-track {
+  border-color: var(--surface-3);
+}
+
+.rest-ring-arc {
+  border-color: var(--ember);
+}
+
+.rest-ring-clip {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
+.rest-ring-rotator {
+  position: absolute;
+  top: 0;
+  transform-origin: 50% 50%;
+}
+
+.rest-ring-center {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rest-ring-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.rest-ring-value {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.rest-ring-caption {
+  font-size: 13px;
+  color: var(--muted);
+}

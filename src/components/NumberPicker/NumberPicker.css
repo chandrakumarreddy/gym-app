@@ -1,0 +1,113 @@
+.np-digits {
+  height: 110px;
+  width: 100%;
+}
+
+.np-digits-scroll {
+  width: 100%;
+  height: 110px;
+}
+
+.np-digits-row {
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+}
+
+.np-digit-cell {
+  display: flex;
+  width: 64px;
+  height: 110px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.np-digit {
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 110px;
+  color: var(--text);
+  transform-origin: 50% 80%;
+}
+
+.np-ruler {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.np-ruler-value {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.np-ruler-number {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.np-ruler-unit {
+  margin-left: 4px;
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.np-ruler-track {
+  position: relative;
+  height: 46px;
+  margin-top: 8px;
+}
+
+.np-ruler-scroll {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 34px;
+}
+
+.np-ticks {
+  display: flex;
+  flex-direction: row;
+  height: 34px;
+}
+
+.np-tick {
+  width: 2px;
+  height: 34px;
+  margin-right: 10px;
+  background-color: var(--line-strong);
+  flex-shrink: 0;
+}
+
+.np-ruler-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+}
+
+.np-ruler-fade-l {
+  left: 0;
+  background-image: var(--ruler-fade-l);
+}
+
+.np-ruler-fade-r {
+  right: 0;
+  background-image: var(--ruler-fade-r);
+}
+
+.np-ruler-mark {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 46px;
+  border-radius: 2px;
+  background-color: var(--ember);
+}

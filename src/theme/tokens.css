@@ -3,15 +3,86 @@
   --surface: #171311;
   --surface-2: #201a17;
   --surface-3: #2b231f;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
   --text: #f7f3f0;
   --muted: #a8a09a;
   --dim: #6f6762;
+
   --ember: #ff5b1f;
+  --ember-2: #ff8a3d;
+  --ember-deep: #8a2a0c;
+  --ember-soft: rgba(255, 91, 31, 0.14);
+  --ember-line: rgba(255, 91, 31, 0.4);
+  --ember-halo-1: rgba(255, 91, 31, 0.12);
+  --ember-halo-2: rgba(255, 91, 31, 0.06);
+  --ember-heat-1: rgba(255, 91, 31, 0.3);
+  --ember-heat-2: rgba(255, 91, 31, 0.6);
+  --ember-grad: linear-gradient(135deg, #ff8a3d 0%, #ff5b1f 55%, #e2410f 100%);
+  --ember-tint-grad: linear-gradient(135deg, rgba(255, 138, 61, 0.18) 0%, rgba(255, 91, 31, 0.1) 100%);
+  --selected-grad: linear-gradient(135deg, rgba(255, 91, 31, 0.14) 0%, rgba(255, 91, 31, 0.04) 100%);
+  --ember-glow: rgba(255, 91, 31, 0.35);
+
   --gold: #ffc048;
+  --gold-soft: rgba(255, 192, 72, 0.14);
+  --gold-line: rgba(255, 192, 72, 0.35);
+  --gold-grad: linear-gradient(135deg, #ffd27a 0%, #ffb02e 100%);
+  --gold-banner-grad: linear-gradient(120deg, #2a1a0c 0%, #3a240c 50%, #1f1409 100%);
   --green: #34d399;
+  --green-soft: rgba(52, 211, 153, 0.14);
+  --green-line: rgba(52, 211, 153, 0.4);
+  --red: #ff4d5e;
+
+  --on-accent: #ffffff;
+  --on-ember: #ffffff;
+  --on-light: #120d0b;
+  --on-gold: #1a1206;
+  --ink: #120d0b;
+  --on-art: #ffffff;
+  --on-art-muted: rgba(255, 255, 255, 0.85);
+  --on-video: #ffffff;
+  --on-video-muted: rgba(255, 255, 255, 0.8);
+  --on-video-dim: rgba(255, 255, 255, 0.7);
+  --play-circle: rgba(255, 255, 255, 0.95);
+  --scrub-track: rgba(255, 255, 255, 0.25);
+  --meter-track: rgba(255, 255, 255, 0.2);
+
+  --scrim: rgba(0, 0, 0, 0.45);
+  --sheet-scrim: rgba(0, 0, 0, 0.6);
+  --glass: rgba(0, 0, 0, 0.35);
+  --glass-strong: rgba(0, 0, 0, 0.55);
+  --glass-line: rgba(255, 255, 255, 0.12);
+  --glass-line-strong: rgba(255, 255, 255, 0.18);
+  --ring-strong: rgba(255, 255, 255, 0.25);
+  --ring-soft: rgba(255, 255, 255, 0.18);
+
+  --hero-grad: radial-gradient(120% 100% at 80% 20%, #ffc48a 0%, #ff7d3a 35%, #a43410 75%, #2b0d05 100%);
+  --art-v1: radial-gradient(120% 90% at 70% 10%, #ff8a3d 0%, #ff5b1f 35%, #9b2d0c 75%, #3b1206 100%);
+  --art-v2: radial-gradient(120% 90% at 30% 10%, #ffb36b 0%, #ff6a2b 40%, #7a230a 80%, #2a0c04 100%);
+  --art-v3: radial-gradient(120% 90% at 50% 0%, #ff7a45 0%, #d63c12 45%, #4a1407 100%);
+  --art-v4: radial-gradient(120% 100% at 80% 20%, #ffc48a 0%, #ff7d3a 35%, #a43410 75%, #2b0d05 100%);
+  --art-dark: radial-gradient(120% 90% at 60% 0%, #4a2a1d 0%, #241612 55%, #120b09 100%);
+  --art-scrim: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.65) 100%);
+
+  --avatar-ember: linear-gradient(135deg, #ff8a3d 0%, #b8350d 100%);
+  --avatar-warm: linear-gradient(135deg, #ffd27a 0%, #e08a14 100%);
+  --avatar-brown: linear-gradient(135deg, #6b4a3d 0%, #2b1c16 100%);
+
+  --hero-fade: linear-gradient(180deg, rgba(13, 11, 10, 0) 40%, #0d0b0a 70%);
+  --footer-fade: linear-gradient(180deg, rgba(13, 11, 10, 0) 0%, #0d0b0a 38%);
+  --bottom-fade: linear-gradient(180deg, rgba(13, 11, 10, 0) 0%, #0d0b0a 38%);
+  --ruler-fade-l: linear-gradient(90deg, #0d0b0a 0%, rgba(13, 11, 10, 0) 100%);
+  --ruler-fade-r: linear-gradient(270deg, #0d0b0a 0%, rgba(13, 11, 10, 0) 100%);
+
+  --tabbar-bg: rgba(13, 11, 10, 0.96);
+  --tabbar-h: 86px;
 
   --radius-chip: 10px;
+  --radius-sm: 12px;
+  --radius-md: 14px;
   --radius-button: 16px;
   --radius-card: 22px;
   --radius-hero: 28px;
+  --radius-sheet: 30px;
+  --radius-pill: 999px;
 }

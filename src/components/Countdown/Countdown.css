@@ -1,0 +1,35 @@
+.countdown {
+  display: flex;
+  flex-direction: row;
+}
+
+.countdown-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+  padding: 8px 10px;
+  margin-right: 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--glass);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--glass-line);
+}
+
+.countdown-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--on-art);
+}
+
+.countdown-label {
+  font-size: 11px;
+  color: var(--on-art-muted);
+}
+
+.countdown-days {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}

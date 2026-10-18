@@ -1,0 +1,84 @@
+.pw {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+}
+
+.pw-header {
+  padding-top: 4px;
+}
+
+.pw-scroll {
+  flex: 1;
+  width: 100%;
+}
+
+.pw-body {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 20px 160px;
+}
+
+.pw-title {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: bold;
+  letter-spacing: -0.8px;
+  color: var(--text);
+}
+
+.pw-benefits {
+  margin-top: 16px;
+}
+
+.pw-card {
+  margin-top: 20px;
+  padding: 16px 16px 0;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.pw-plans {
+  margin-top: 24px;
+}
+
+.pw-load-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+.pw-message {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted);
+}
+
+.pw-message-gap {
+  margin-top: 4px;
+}
+
+.pw-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 20px 24px;
+}
+
+.pw-footer-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  bottom: 0;
+  background-image: var(--footer-fade);
+}

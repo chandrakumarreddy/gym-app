@@ -1,0 +1,16 @@
+.pw-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 0 8px;
+}
+
+.pw-link {
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.pw-link-busy {
+  opacity: 0.5;
+}

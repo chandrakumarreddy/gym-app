@@ -1,0 +1,31 @@
+.family-banner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background-image: var(--gold-banner-grad);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--gold-line);
+}
+
+.family-banner-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 14px;
+}
+
+.family-banner-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.family-banner-sub {
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--muted);
+}

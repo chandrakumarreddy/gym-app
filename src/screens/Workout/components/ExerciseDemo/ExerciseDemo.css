@@ -1,0 +1,38 @@
+.exercise-demo {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 34px;
+}
+
+.exercise-demo-name {
+  margin-top: 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.exercise-demo-rx {
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.exercise-demo-swap {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ember-2);
+}
+
+.exercise-demo-cues-title {
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.exercise-demo-cue {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--text);
+}

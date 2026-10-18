@@ -1,0 +1,24 @@
+.toggle {
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-3);
+  transition: background-color 160ms ease-out;
+}
+
+.toggle-on {
+  background-color: var(--ember);
+}
+
+.toggle-knob {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background-color: var(--text);
+  transition: transform 160ms ease-out;
+}
+
+.toggle-knob-on {
+  transform: translateX(20px);
+}

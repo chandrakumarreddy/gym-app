@@ -1,0 +1,105 @@
+.ch-hero {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+
+.ch-hero-art {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.ch-hero-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--art-scrim);
+}
+
+.ch-hero-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ch-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+}
+
+.ch-pill-ember {
+  background-color: var(--ember);
+}
+
+.ch-pill-glass {
+  background-color: var(--scrim);
+}
+
+.ch-pill-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-art);
+}
+
+.ch-pill-gap {
+  margin-left: 4px;
+}
+
+.ch-hero-bottom {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-hero-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--on-art);
+}
+
+.ch-hero-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.ch-hero-meta {
+  font-size: 13px;
+  color: var(--on-art-muted);
+}
+
+.ch-meter {
+  height: 8px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--meter-track);
+}
+
+.ch-meter-fill {
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--on-art);
+}
+
+.ch-hero-join {
+  margin-top: 12px;
+  align-self: flex-start;
+}

@@ -1,0 +1,66 @@
+.pws-card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 16px 16px 0;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.pws-step {
+  display: flex;
+  flex-direction: row;
+}
+
+.pws-dot {
+  margin-right: 14px;
+}
+
+.pws-step-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 16px;
+}
+
+.pws-gap {
+  margin-top: 2px;
+}
+
+.pws-plans {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.pws-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.pws-radio {
+  margin-right: 12px;
+}
+
+.pws-option-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pws-price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

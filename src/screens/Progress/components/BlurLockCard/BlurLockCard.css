@@ -1,0 +1,41 @@
+.blur-lock {
+  position: relative;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background-color: var(--surface);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.blur-lock-content {
+  padding: 16px;
+  filter: blur(6px);
+  opacity: 0.6;
+}
+
+.blur-lock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.blur-lock-pitch {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text);
+}
+
+.blur-lock-cta {
+  margin-top: 10px;
+}

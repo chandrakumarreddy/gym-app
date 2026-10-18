@@ -1,0 +1,40 @@
+.lb-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.lb-row-me {
+  background-color: var(--ember-soft);
+  border-color: var(--ember-line);
+}
+
+.lb-rank {
+  width: 28px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.lb-rank-top {
+  color: var(--text);
+}
+
+.lb-name {
+  flex: 1;
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lb-score {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}

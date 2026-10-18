@@ -1,0 +1,91 @@
+.locked {
+  display: flex;
+  flex-direction: column;
+}
+
+.locked-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.locked-head-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 12px;
+}
+
+.locked-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+
+.locked-sub {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.locked-benefits {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.locked-benefit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.locked-benefit-text {
+  flex: 1;
+  margin-left: 10px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.locked-trial {
+  margin-top: 14px;
+}
+
+.locked-or {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.locked-hairline {
+  flex: 1;
+  height: 1px;
+  background-color: var(--line);
+}
+
+.locked-or-text {
+  margin: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.locked-buy {
+  margin-top: 16px;
+}
+
+.locked-note {
+  margin-top: 12px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--dim);
+}
+
+.locked-msg {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--muted);
+}
