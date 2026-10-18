@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getPlan } from "@/api/plans.ts";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { Button } from "@/components/Button/Button.tsx";
@@ -17,6 +18,7 @@ import { formatPlanMeta, lockedCopy, toPreviewRows } from "@/screens/PlanPreview
 import { useAuth } from "@/services/auth.ts";
 import { useEntitlements } from "@/services/purchases.ts";
 import { setCurrentPlan, setOnboardingStep, useCurrentPlan } from "@/state/plan.ts";
+import { resetQuiz } from "@/state/quizAnswers.ts";
 import type { ArtSpec } from "@/types/art.ts";
 import type { Plan } from "@/types/plan.ts";
 import type { RouteParams } from "@/types/route.ts";
@@ -52,7 +54,11 @@ export function PlanPreview({ planId }: RouteParams<"plan-preview">) {
         setCurrentPlan(p);
         setRemote({ plan: p });
       },
-      () => !cancelled && setRemote({ error: true }),
+      () => {
+        if (cancelled) return;
+        setRemote({ error: true });
+        haptic("error");
+      },
     );
     return () => {
       cancelled = true;
@@ -100,6 +106,15 @@ export function PlanPreview({ planId }: RouteParams<"plan-preview">) {
     push({ name: "signup", planId });
   };
 
+  const startOver = () => {
+    track("plan_reset", { planId });
+    // Leave first so clearing the plan doesn't make this screen refetch it.
+    reset({ name: "quiz-goal" });
+    resetQuiz();
+    setCurrentPlan(null);
+    setOnboardingStep("quiz");
+  };
+
   const onLocked = () => {
     track("lock_tapped", { content: "plan_weeks_2_8" });
     save();
@@ -111,7 +126,10 @@ export function PlanPreview({ planId }: RouteParams<"plan-preview">) {
         <view className="pp-body">
           {vm && plan ? (
             <>
-              <text className="pp-eyebrow">{t("planPreview.eyebrow")}</text>
+              <view className="pp-top">
+                <text className="pp-eyebrow">{t("planPreview.eyebrow")}</text>
+                <Button label={t("planPreview.reset")} variant="link" sm haptic="heavy" onTap={startOver} />
+              </view>
               <text className="pp-title" text-maxline="2">
                 {plan.title}
               </text>

@@ -1,3 +1,4 @@
+import { haptic } from "@/api/haptics.ts";
 import { Skeleton } from "@/components/Skeleton/Skeleton.tsx";
 
 import "./PaywallFooterLinks.css";
@@ -14,7 +15,14 @@ type PaywallFooterLinksProps = {
 export function PaywallFooterLinks({ restoreLabel, middle, middleLoading, legal, restoring, onRestore }: PaywallFooterLinksProps) {
   return (
     <view className="pw-links">
-      <text className={`pw-link${restoring ? " pw-link-busy" : ""}`} bindtap={restoring ? undefined : onRestore}>
+      <text className={`pw-link${restoring ? " pw-link-busy" : ""}`} bindtap={
+          restoring
+            ? undefined
+            : () => {
+                haptic();
+                onRestore?.();
+              }
+        }>
         {restoreLabel}
       </text>
       {middleLoading ? <Skeleton width={90} height={13} radius={4} /> : <text className="pw-link">{middle}</text>}

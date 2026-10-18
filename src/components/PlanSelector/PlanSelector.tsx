@@ -16,7 +16,7 @@ export function PlanSelector({ options, selectedId, onSelect, className = "" }: 
       {options.map((o) => {
         const on = o.id === selectedId;
         return (
-          <Pressable key={o.id} className={`plan-option${on ? " plan-option-on" : ""}`} onTap={() => onSelect(o.id)}>
+          <Pressable key={o.id} className={`plan-option${on ? " plan-option-on" : ""}`} haptic="selection" onTap={() => onSelect(o.id)}>
             {o.badge ? (
               <view className="plan-option-badge">
                 <text className="plan-option-badge-label">{o.badge}</text>

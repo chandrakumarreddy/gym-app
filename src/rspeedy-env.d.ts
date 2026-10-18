@@ -12,4 +12,7 @@ declare let NativeModules: {
     setFullBleed(fullBleed: boolean): void;
     appReady(): void;
   };
+  NativeHapticsModule?: {
+    trigger(kind: string): void;
+  };
 };

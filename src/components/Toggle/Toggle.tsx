@@ -10,7 +10,7 @@ type ToggleProps = {
 
 export function Toggle({ on, onChange, disabled }: ToggleProps) {
   return (
-    <Pressable className={`toggle${on ? " toggle-on" : ""}`} disabled={disabled} onTap={() => onChange?.(!on)}>
+    <Pressable className={`toggle${on ? " toggle-on" : ""}`} disabled={disabled} haptic="selection" onTap={() => onChange?.(!on)}>
       <view className={`toggle-knob${on ? " toggle-knob-on" : ""}`} />
     </Pressable>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useMainThreadRef, useMemo, useRef, useState } from "@lynx-js/react";
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
 import { getProgram, getProgramProgress } from "@/api/programs.ts";
 import { Art } from "@/components/Art/Art.tsx";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
@@ -76,6 +77,11 @@ export function Program({ programId, weekIndex }: RouteParams<"program">) {
   const [selectedWeek, setSelectedWeek] = useState<number | null>(weekIndex ?? null);
   const [download, setDownload] = useState<DownloadState>("idle");
   const downloadTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const failed = !loading && !!error;
+
+  useEffect(() => {
+    if (failed) haptic("error");
+  }, [failed]);
 
   useEffect(
     () => () => {
@@ -164,6 +170,7 @@ export function Program({ programId, weekIndex }: RouteParams<"program">) {
   const onDownload = () => {
     if (!program) return;
     if (!premium) {
+      haptic("warning");
       openLocked({ contentType: "feature", contentId: "download", title: program.title, source: "program" });
       return;
     }
@@ -179,8 +186,10 @@ export function Program({ programId, weekIndex }: RouteParams<"program">) {
   };
 
   const onRow = (id: string, state: StatusDotState) => {
-    if (state === "locked") lockProgram(vm?.week);
-    else push({ name: "workout", sessionId: id, source: "program_row" });
+    if (state === "locked") {
+      haptic("warning");
+      lockProgram(vm?.week);
+    } else push({ name: "workout", sessionId: id, source: "program_row" });
   };
 
   const skelRows = useSkeletonCount("program.rows", 3, vm && !progressLoading ? vm.rows.length : undefined);

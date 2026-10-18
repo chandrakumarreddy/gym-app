@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState } from "@lynx-js/react";
+import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
 import { getCoach } from "@/api/coaches.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getCreditPacks, submitFormCheck } from "@/api/formChecks.ts";
 import { LOWER_HYPERTROPHY_EXERCISES } from "@/api/mock/content.ts";
 import { getJSON, setJSON } from "@/api/storage.ts";
@@ -68,6 +69,18 @@ export function FormCheck({ coachId, exerciseId: initialExercise, source }: Rout
     setSpent(getJSON<number>(SPENT_KEY) ?? 0);
   }, []);
 
+  const prevStatus = useRef(upload.status);
+  useEffect(() => {
+    const prev = prevStatus.current;
+    prevStatus.current = upload.status;
+    if (upload.status === "ready" && prev === "uploading") haptic("success");
+    else if (upload.status === "failed" && prev !== "failed") haptic("error");
+  }, [upload.status]);
+
+  useEffect(() => {
+    if (packs.error) haptic("error");
+  }, [packs.error]);
+
   const credits = Math.max(0, entitlements.formCheckCredits - spent);
   const coachName = coach.data?.name.split(" ")[0] ?? "Priya";
   const coachInitials = coach.data?.initials ?? "PN";
@@ -130,8 +143,10 @@ export function FormCheck({ coachId, exerciseId: initialExercise, source }: Rout
       setSpent(nextSpent);
       track("form_check_submitted", { exercise: exerciseId, coach: resolvedCoachId, source });
       clear();
+      haptic("success");
       setSheet("sent");
     } catch {
+      haptic("error");
       setSubmitError(true);
     } finally {
       setSubmitting(false);
@@ -145,6 +160,7 @@ export function FormCheck({ coachId, exerciseId: initialExercise, source }: Rout
     const res = await purchase(pack.productId);
     if (res.status === "success") {
       track("purchase", { product: pack.productId, price: isPremium ? pack.premiumPriceInr : pack.priceInr, premium: isPremium, source: "form_check" });
+      haptic("success");
       setPurchaseState("idle");
       if (clipReady) void submit();
     } else if (res.status === "pending") {
@@ -152,6 +168,7 @@ export function FormCheck({ coachId, exerciseId: initialExercise, source }: Rout
     } else if (res.status === "cancelled") {
       setPurchaseState("idle");
     } else {
+      haptic("error");
       setPurchaseState("failed");
     }
   }

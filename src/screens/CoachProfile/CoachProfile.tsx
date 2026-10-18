@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "@lynx-js/react";
 
+import { haptic } from "@/api/haptics.ts";
 import { followCoach, getCoach, getCoachPrograms } from "@/api/coaches.ts";
 import { Art } from "@/components/Art/Art.tsx";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
@@ -110,6 +111,12 @@ export function CoachProfile({ coachId }: RouteParams<"coach">) {
   const [buy, setBuy] = useState<BuyState>(null);
 
   const c = coach.data ?? null;
+  const coachFailed = !!coach.error || (!coach.loading && !c);
+  const programsFailed = !programs.loading && !!programs.error;
+
+  useEffect(() => {
+    if (coachFailed || programsFailed) haptic("error");
+  }, [coachFailed, programsFailed]);
   useEffect(() => {
     if (c) setFollowing(c.following);
   }, [c]);
@@ -148,6 +155,7 @@ export function CoachProfile({ coachId }: RouteParams<"coach">) {
 
   const openProgram = (p: CoachProgram) => {
     if (p.access === "premium" && !isPremium) {
+      haptic("warning");
       const opened = openLocked({ contentType: "program", contentId: p.id, title: p.title, source: "coach_profile" });
       if (opened) return;
     }
@@ -156,13 +164,19 @@ export function CoachProfile({ coachId }: RouteParams<"coach">) {
 
   const buyPack = (p: CoachProgram) => {
     if (!p.packProductId || buy?.status === "buying") return;
+    haptic("medium");
     setBuy({ id: p.id, status: "buying" });
     purchase(p.packProductId as ProductId).then(
       (r) => {
+        if (r.status === "success") haptic("success");
+        else if (r.status === "error") haptic("error");
         if (r.status === "success" || r.status === "cancelled") setBuy(null);
         else setBuy({ id: p.id, status: r.status === "pending" ? "pending" : "error" });
       },
-      () => setBuy({ id: p.id, status: "error" }),
+      () => {
+        haptic("error");
+        setBuy({ id: p.id, status: "error" });
+      },
     );
   };
 

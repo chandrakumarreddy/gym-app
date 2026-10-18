@@ -1,6 +1,7 @@
 import { useEffect, useMainThreadRef, useMemo, useRef, useState } from "@lynx-js/react";
 import type { LayoutChangeEvent, MainThread, ScrollEndEvent } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
 import type { MainThreadScrollEvent } from "@/types/lynx.d.ts";
 
 import "./NumberPicker.css";
@@ -96,6 +97,7 @@ export function NumberPicker({ variant = "digits", min, max, step = 1, value, on
     const next = min + i * step;
     if (next !== emitted.current) {
       emitted.current = next;
+      haptic("selection");
       onChange(next);
     }
   };

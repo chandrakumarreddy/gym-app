@@ -1,5 +1,7 @@
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic as fireHaptic } from "@/api/haptics.ts";
+import type { HapticKind } from "@/api/haptics.ts";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import type { IconName, IconTone } from "@/components/Icon/Icon.tsx";
 
@@ -18,6 +20,7 @@ type ButtonProps = {
   fullWidth?: boolean;
   block?: boolean;
   className?: string;
+  haptic?: HapticKind | false;
   onTap?: () => void;
 };
 
@@ -39,7 +42,7 @@ function onPressOut(event: MainThread.TouchEvent) {
   event.currentTarget.setStyleProperty("opacity", "1");
 }
 
-export function Button({ label, variant = "primary", size, sm, icon, loading, disabled, fullWidth, block, className = "", onTap }: ButtonProps) {
+export function Button({ label, variant = "primary", size, sm, icon, loading, disabled, fullWidth, block, className = "", haptic, onTap }: ButtonProps) {
   const small = sm || size === "sm";
   const inactive = disabled || loading;
   const cls = `button button-${variant}${small ? " button-sm" : ""}${fullWidth ? " button-full" : ""}${block ? " button-block" : ""}${disabled ? " button-disabled" : ""} ${className}`;
@@ -50,6 +53,14 @@ export function Button({ label, variant = "primary", size, sm, icon, loading, di
     </>
   );
 
+  const kind = haptic ?? (variant === "link" ? "light" : "medium");
+  const handleTap = onTap
+    ? () => {
+        if (kind) fireHaptic(kind);
+        onTap();
+      }
+    : undefined;
+
   if (inactive) {
     return <view className={cls}>{content}</view>;
   }
@@ -57,7 +68,7 @@ export function Button({ label, variant = "primary", size, sm, icon, loading, di
   return (
     <view
       className={cls}
-      bindtap={onTap}
+      bindtap={handleTap}
       main-thread:bindtouchstart={onPressIn}
       main-thread:bindtouchend={onPressOut}
       main-thread:bindtouchcancel={onPressOut}

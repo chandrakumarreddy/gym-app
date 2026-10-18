@@ -10,6 +10,7 @@ FitCue: a video-first gym app. Spec: `plan.md`. Mockups: `mockups/`.
 - Colors come from `var(--token)` in `src/theme/tokens.css`, never hex values. `--ember` means action. `--gold` is only for Premium.
 - No `useLayoutEffect`.
 - Every API-backed region shows a loading skeleton (`@/components/Skeleton/Skeleton.tsx`) while its request is in flight, including retries and param changes. The skeleton matches the final layout's size and position, so nothing shifts when data arrives. Never render `null`, blank space or a spinner in place of content that is loading. Keep static chrome (header, tabs, CTAs) rendered during loading. For lists or optional blocks, size the skeleton with `useSkeletonCount(key, fallback, count)` from `@/hooks/useSkeletonCount.ts`, which remembers the last real count. For text, use `@/components/TextSkeleton/TextSkeleton.tsx`. A failed request shows an error with a Retry button, never the empty state.
+- Haptics go through `haptic(kind)` from `@/api/haptics.ts`, called on the background thread (in `bindtap` or an effect), never from a main-thread handler. `Pressable` fires `light` and `Button` fires `medium` by default; override with the `haptic` prop, or pass `haptic={false}` when the screen fires its own. Use `selection` for choices, toggles, tabs and value changes; `heavy` for long-press and destructive actions; `success` for completions, PRs and purchases; `warning` for locked or blocked actions; `error` for failures. Fire once per user action or event, never per frame or scroll tick.
 
 ## Threading
 

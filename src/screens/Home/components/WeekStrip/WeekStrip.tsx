@@ -16,7 +16,7 @@ export function WeekStrip({ days, onSelect }: WeekStripProps) {
   return (
     <view className="week-strip">
       {days.map((d) => (
-        <Pressable key={d.id} className="week-strip-day" onTap={onSelect ? () => onSelect(d.id, d.state) : undefined}>
+        <Pressable key={d.id} className="week-strip-day" haptic="selection" onTap={onSelect ? () => onSelect(d.id, d.state) : undefined}>
           <view className={`week-strip-circle week-strip-${d.state}`}>
             {d.state === "done" ? <Icon name="check" tone="text" size={16} /> : <text className={`week-strip-num week-strip-num-${d.state}`}>{d.num}</text>}
           </view>

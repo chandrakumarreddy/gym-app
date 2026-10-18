@@ -1,5 +1,6 @@
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
 import { useLocale } from "@/hooks/useLocale.tsx";
 
 import "./LanguageToggle.css";
@@ -20,7 +21,10 @@ export function LanguageToggle() {
   return (
     <view
       className="language-toggle"
-      bindtap={() => setLocale(locale === "en" ? "hi" : "en")}
+      bindtap={() => {
+        haptic("selection");
+        setLocale(locale === "en" ? "hi" : "en");
+      }}
       main-thread:bindtouchstart={onPressIn}
       main-thread:bindtouchend={onPressOut}
       main-thread:bindtouchcancel={onPressOut}

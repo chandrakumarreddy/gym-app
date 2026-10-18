@@ -1,6 +1,9 @@
 import type { ReactNode } from "@lynx-js/react";
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic as fireHaptic } from "@/api/haptics.ts";
+import type { HapticKind } from "@/api/haptics.ts";
+
 import "./Pressable.css";
 
 export type PressFeedback = "opacity" | "scale";
@@ -10,6 +13,7 @@ type PressableProps = {
   style?: Record<string, string | number>;
   feedback?: PressFeedback;
   disabled?: boolean;
+  haptic?: HapticKind | false;
   onTap?: () => void;
   onLongPress?: () => void;
   onRelease?: () => void;
@@ -38,7 +42,7 @@ function scaleOut(e: MainThread.TouchEvent) {
   e.currentTarget.setStyleProperty("opacity", "1");
 }
 
-export function Pressable({ className = "", style, feedback = "opacity", disabled, onTap, onLongPress, onRelease, children }: PressableProps) {
+export function Pressable({ className = "", style, feedback = "opacity", disabled, haptic = "light", onTap, onLongPress, onRelease, children }: PressableProps) {
   if (disabled) {
     return (
       <view className={`pressable pressable-disabled ${className}`} style={style}>
@@ -46,13 +50,25 @@ export function Pressable({ className = "", style, feedback = "opacity", disable
       </view>
     );
   }
+  const handleTap = onTap
+    ? () => {
+        if (haptic) fireHaptic(haptic);
+        onTap();
+      }
+    : undefined;
+  const handleLongPress = onLongPress
+    ? () => {
+        fireHaptic("heavy");
+        onLongPress();
+      }
+    : undefined;
   if (feedback === "scale") {
     return (
       <view
         className={`pressable ${className}`}
         style={style}
-        bindtap={onTap}
-        bindlongpress={onLongPress}
+        bindtap={handleTap}
+        bindlongpress={handleLongPress}
         bindtouchend={onRelease}
         bindtouchcancel={onRelease}
         main-thread:bindtouchstart={scaleIn}
@@ -67,8 +83,8 @@ export function Pressable({ className = "", style, feedback = "opacity", disable
     <view
       className={`pressable ${className}`}
       style={style}
-      bindtap={onTap}
-      bindlongpress={onLongPress}
+      bindtap={handleTap}
+      bindlongpress={handleLongPress}
       bindtouchend={onRelease}
       bindtouchcancel={onRelease}
       main-thread:bindtouchstart={opacityIn}

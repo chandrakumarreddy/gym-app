@@ -1,6 +1,7 @@
-import { useMemo, useState } from "@lynx-js/react";
+import { useEffect, useMemo, useState } from "@lynx-js/react";
 
 import { getHome } from "@/api/home.ts";
+import { haptic } from "@/api/haptics.ts";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { Button } from "@/components/Button/Button.tsx";
 import { Chip } from "@/components/Chip/Chip.tsx";
@@ -109,6 +110,11 @@ export function Home() {
   const [reload, setReload] = useState(0);
   const { data: feed, loading } = useAsync(getHome, [reload]);
   const [helloKey] = useState(() => greetingKey(new Date()));
+  const failed = !loading && !feed;
+
+  useEffect(() => {
+    if (failed) haptic("error");
+  }, [failed]);
 
   const vm = useMemo(() => {
     if (!feed) return null;
@@ -153,9 +159,14 @@ export function Home() {
 
   const today = feed.today;
   const openWorkout = () => push({ name: "workout", sessionId: today.sessionId, source: "home_hero" });
-  const startWorkout = () => push({ name: "player", sessionId: today.sessionId, source: "home_hero" });
+  const startWorkout = () => {
+    haptic("medium");
+    push({ name: "player", sessionId: today.sessionId, source: "home_hero" });
+  };
   const download = () => {
-    if (!premium) openLocked({ contentType: "feature", contentId: "download", title: today.title, source: "home" });
+    if (premium) return;
+    haptic("warning");
+    openLocked({ contentType: "feature", contentId: "download", title: today.title, source: "home" });
   };
   const onDay = (_id: string, state: WeekDayState) => {
     if (state === "today") openWorkout();
@@ -252,6 +263,7 @@ export function Home() {
                 locked={c.locked}
                 onTap={() => {
                   if (c.locked) {
+                    haptic("warning");
                     openLocked({
                       contentType: "program",
                       contentId: c.programId,

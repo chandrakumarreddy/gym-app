@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getDownloadsSummary, getProfile, updateProfile } from "@/api/profile.ts";
 import { getJSON, setJSON } from "@/api/storage.ts";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
@@ -84,6 +85,10 @@ export function Profile() {
     });
   }, [remote.data]);
 
+  useEffect(() => {
+    if (remote.error) haptic("error");
+  }, [remote.error]);
+
   useEffect(
     () => () => {
       if (toastTimer.current) clearTimeout(toastTimer.current);
@@ -150,6 +155,7 @@ export function Profile() {
     setFamilyState("busy");
     const res = await purchase("family_annual");
     if (res.status === "success") {
+      haptic("success");
       track("purchase", { product: "family_annual" });
       setFamilyState("idle");
       setSheet(null);
@@ -158,7 +164,10 @@ export function Profile() {
       setSheet(null);
     } else {
       setFamilyState("idle");
-      if (res.status === "error") showToast({ key: "profile.purchaseFailed", tone: "error" });
+      if (res.status === "error") {
+        haptic("error");
+        showToast({ key: "profile.purchaseFailed", tone: "error" });
+      }
     }
   };
 
@@ -177,13 +186,17 @@ export function Profile() {
 
   const onHealth = async (on: boolean) => {
     if (!isPremium) {
+      haptic("warning");
       track("lock_tapped", { content: "health_sync" });
       return openPaywall("profile", "health_lock");
     }
     track("health_sync_toggled", { on });
     const ok = await patchProfile({ healthSync: on });
     if (ok) setJSON(HEALTH_KEY, on);
-    else showToast({ key: "profile.healthDenied", tone: "error" });
+    else {
+      haptic("error");
+      showToast({ key: "profile.healthDenied", tone: "error" });
+    }
   };
 
   const onRestore = async () => {
@@ -192,9 +205,11 @@ export function Profile() {
     try {
       const e = await restore();
       const found = e.premium.active || e.packs.length > 0 || e.formCheckCredits > 0;
+      haptic(found ? "success" : "warning");
       track("restore_tapped", { result: found ? "restored" : "none" });
       showToast({ key: found ? "profile.restored" : "profile.restoreNone", tone: found ? "ok" : "error" });
     } catch {
+      haptic("error");
       track("restore_tapped", { result: "failed" });
       showToast({ key: "profile.restoreFailed", tone: "error" });
     } finally {
@@ -292,6 +307,7 @@ export function Profile() {
                   <LockBadge variant="inline" size={16} />
                 )
               }
+              haptic={false}
               onTap={isPremium ? undefined : () => void onHealth(true)}
             />
             <ProfileRow
@@ -333,7 +349,7 @@ export function Profile() {
             <text className="profile-sheet-label">{t("profile.language")}</text>
             <LanguageToggle />
           </view>
-          <Button variant="ghost" label={t("profile.signOut")} fullWidth onTap={() => void onSignOut()} />
+          <Button variant="ghost" label={t("profile.signOut")} fullWidth haptic="heavy" onTap={() => void onSignOut()} />
         </view>
       </BottomSheet>
 

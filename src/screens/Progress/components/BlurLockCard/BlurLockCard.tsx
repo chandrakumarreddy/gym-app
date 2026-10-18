@@ -16,7 +16,7 @@ type BlurLockCardProps = {
 
 export function BlurLockCard({ height, pitch, cta, onUnlock, children }: BlurLockCardProps) {
   return (
-    <Pressable className="blur-lock" style={{ height: `${height}px` }} onTap={onUnlock}>
+    <Pressable className="blur-lock" style={{ height: `${height}px` }} haptic="warning" onTap={onUnlock}>
       <view className="blur-lock-content">{children}</view>
       <view className="blur-lock-overlay">
         <ProBadge size="md" />

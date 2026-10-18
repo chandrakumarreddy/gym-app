@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { setJSON } from "@/api/storage.ts";
 import { getWinBackOffer, markWinBackShown, recordWinBackOutcome } from "@/api/winback.ts";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
@@ -130,6 +131,7 @@ export function WinBack({ productId, source }: RouteParams<"winback">) {
     setNote(null);
     const r = await purchase(productId, { promotionalOffer: { offerId: offer.storeOfferId } });
     if (r.status === "success") {
+      haptic("success");
       record("accepted");
       track("winback_accepted", { kind: "promo", product: productId, offerId: offer.storeOfferId });
       track("purchase", { product: productId, offer: offer.storeOfferId });
@@ -140,7 +142,10 @@ export function WinBack({ productId, source }: RouteParams<"winback">) {
       setNote({ key: "winback.pending", tone: "ok" });
     } else {
       setBusy("idle");
-      if (r.status === "error") setNote({ key: "winback.failed", tone: "error" });
+      if (r.status === "error") {
+        haptic("error");
+        setNote({ key: "winback.failed", tone: "error" });
+      }
     }
   };
 
@@ -149,6 +154,7 @@ export function WinBack({ productId, source }: RouteParams<"winback">) {
     setBusy("pause");
     try {
       const e = await pauseSubscription(1);
+      haptic("success");
       record("paused");
       track("winback_accepted", { kind: "pause", product: productId, offerId: "pause_1m" });
       setConfirmPause(false);
@@ -156,6 +162,7 @@ export function WinBack({ productId, source }: RouteParams<"winback">) {
       const until = e.premium.pausedUntil ?? Date.now() + 30 * DAY;
       finish({ key: "winback.paused", vars: { date: formatDayMonth(until, locale) }, tone: "ok" });
     } catch {
+      haptic("error");
       setBusy("idle");
       setConfirmPause(false);
       setNote({ key: "winback.failed", tone: "error" });

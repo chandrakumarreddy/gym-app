@@ -1,6 +1,7 @@
 import { useMemo, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { claimPlan, uploadPlan } from "@/api/plans.ts";
 import { Button } from "@/components/Button/Button.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
@@ -53,6 +54,7 @@ export function Signup({ mode = "signup" }: RouteParams<"signup">) {
         // The plan stays saved on this phone; sync retries later.
       }
     }
+    haptic("success");
     if (session.user.isNew) track("account_created", { method, isNew: true });
     setPending(null);
     setSheet(null);
@@ -80,13 +82,17 @@ export function Signup({ mode = "signup" }: RouteParams<"signup">) {
       return;
     }
     setPending(null);
-    if (res.error.code !== "cancelled") setError(t("signup.error"));
+    if (res.error.code !== "cancelled") {
+      haptic("error");
+      setError(t("signup.error"));
+    }
   };
 
   const submitEmail = (value: string) => {
     if (pending) return;
     const v = value.trim();
     if (!EMAIL_RE.test(v)) {
+      haptic("error");
       setEmailError(true);
       return;
     }

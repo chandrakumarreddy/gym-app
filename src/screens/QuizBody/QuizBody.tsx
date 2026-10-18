@@ -184,6 +184,7 @@ export function QuizBody() {
             label={t("common.done")}
             fullWidth
             className="quiz-body-sheet-done"
+            haptic="selection"
             onTap={commitSheet}
           />
         </view>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { buildMockPlan, generatePlan } from "@/api/plans.ts";
 import { Button } from "@/components/Button/Button.tsx";
 import { RestRing } from "@/components/RestRing/RestRing.tsx";
@@ -78,12 +79,14 @@ export function Building() {
         setOnboardingStep("plan");
         track("plan_generated", { source, ms: Date.now() - startedAt });
         setFinished(true);
+        haptic("success");
         timers.push(setTimeout(() => !cancelled && replace({ name: "plan-preview", planId: plan.id }), EXIT_DELAY_MS));
       },
       () => {
         if (cancelled) return;
         timers.forEach(clearTimeout);
         setFailed(true);
+        haptic("error");
       },
     );
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getSession } from "@/api/sessions.ts";
 import { Art } from "@/components/Art/Art.tsx";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
@@ -79,6 +80,10 @@ export function Player({ sessionId, resumeAtSec }: RouteParams<"player">) {
     [sessionId],
   );
 
+  useEffect(() => {
+    if (loadError) haptic("error");
+  }, [loadError]);
+
   const restStartedAt = s?.rest?.startedAt;
   useEffect(() => setRestCollapsed(false), [restStartedAt]);
 
@@ -117,6 +122,7 @@ export function Player({ sessionId, resumeAtSec }: RouteParams<"player">) {
   const setTime = `${pad2(Math.floor(sec / 60))}:${pad2(sec % 60)}`;
 
   const gate = (source: PaywallSource, content: string) => {
+    haptic("warning");
     track("lock_tapped", { content });
     push({ name: "paywall", source });
   };
@@ -194,6 +200,7 @@ export function Player({ sessionId, resumeAtSec }: RouteParams<"player">) {
 
   const onScrubEnd = (r: number) => {
     const target = Math.round(r * segmentSec);
+    haptic("selection");
     controller.seek(target);
     session.syncPosition(target);
     track("player_scrubbed", { exerciseId: ex.id, toSec: target });
@@ -232,7 +239,7 @@ export function Player({ sessionId, resumeAtSec }: RouteParams<"player">) {
           <text className="player-settime-cap">{t("player.setTime")}</text>
         </view>
         {cue ? (
-          <Pressable className="player-cue" onTap={onCue}>
+          <Pressable className="player-cue" haptic={premium ? "light" : false} onTap={onCue}>
             <CoachCue initials={ex.coach.initials} text={cue.text[locale] ?? cue.text.en} speaking={s.voiceCues} />
           </Pressable>
         ) : null}

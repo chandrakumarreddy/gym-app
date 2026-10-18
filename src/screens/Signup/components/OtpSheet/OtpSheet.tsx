@@ -1,5 +1,6 @@
 import { useEffect, useState } from "@lynx-js/react";
 
+import { haptic } from "@/api/haptics.ts";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
 import { Button } from "@/components/Button/Button.tsx";
 import { Skeleton } from "@/components/Skeleton/Skeleton.tsx";
@@ -38,6 +39,7 @@ export function OtpSheet({ kind, email = "", onClose, onSuccess }: OtpSheetProps
   const send = async () => {
     if (!kind || busy) return;
     if (kind === "phone" && !PHONE_RE.test(phone)) {
+      haptic("error");
       setError(t("signup.otp.phoneInvalid"));
       return;
     }
@@ -46,6 +48,7 @@ export function OtpSheet({ kind, email = "", onClose, onSuccess }: OtpSheetProps
     const res = kind === "phone" ? await startPhoneOtp(`+91${phone}`) : await startEmailOtp(email);
     setBusy(false);
     if (!res.ok) {
+      haptic("error");
       setError(t("signup.error"));
       return;
     }
@@ -60,8 +63,12 @@ export function OtpSheet({ kind, email = "", onClose, onSuccess }: OtpSheetProps
     setError(null);
     const res = kind === "phone" ? await verifyPhoneOtp(requestId, `+91${phone}`, code) : await verifyEmailOtp(requestId, email, code);
     setBusy(false);
-    if (res.ok) onSuccess(res.session, kind);
-    else setError(res.error.code === "invalid_code" ? t("signup.otp.wrong") : t("signup.error"));
+    if (res.ok) {
+      onSuccess(res.session, kind);
+      return;
+    }
+    haptic("error");
+    setError(res.error.code === "invalid_code" ? t("signup.otp.wrong") : t("signup.error"));
   };
 
   useEffect(() => {

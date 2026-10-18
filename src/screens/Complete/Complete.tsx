@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { postFeel } from "@/api/sessions.ts";
 import { getJSON } from "@/api/storage.ts";
 import { Button } from "@/components/Button/Button.tsx";
@@ -75,11 +76,16 @@ export function Complete({ sessionId }: RouteParams<"complete">) {
       (res) => {
         sent.current = true;
         if (!alive) return;
+        haptic("success");
         setSummary(res);
         setFinishing(false);
         setFinished(true);
       },
-      () => alive && setFinishing(false),
+      () => {
+        if (!alive) return;
+        haptic("success");
+        setFinishing(false);
+      },
     );
     return () => {
       alive = false;

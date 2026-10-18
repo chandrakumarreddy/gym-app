@@ -19,7 +19,7 @@ export function CoachTip({ text, locked, onTap }: CoachTipProps) {
   );
   if (onTap) {
     return (
-      <Pressable className="coach-tip" onTap={onTap}>
+      <Pressable className="coach-tip" haptic={locked ? false : "light"} onTap={onTap}>
         {body}
       </Pressable>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useMainThreadRef, useMemo, useRef, useState } from "@lynx-js/react";
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
 import { getSession } from "@/api/sessions.ts";
 import { Art } from "@/components/Art/Art.tsx";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
@@ -98,6 +99,11 @@ export function Workout({ sessionId, source }: RouteParams<"workout">) {
   const [demoId, setDemoId] = useState<string | null>(null);
   const [download, setDownload] = useState<DownloadState>("idle");
   const downloadTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const failed = !loading && !session;
+
+  useEffect(() => {
+    if (failed) haptic("error");
+  }, [failed]);
 
   const compactRef = useMainThreadRef<MainThread.Element | null>(null);
   const compactOn = useMainThreadRef(false);
@@ -152,8 +158,10 @@ export function Workout({ sessionId, source }: RouteParams<"workout">) {
     };
   }, [session, demoId, t, locale]);
 
-  const lockFeature = (feature: "cast" | "download") =>
+  const lockFeature = (feature: "cast" | "download") => {
+    haptic("warning");
     openLocked({ contentType: "feature", contentId: feature, title: session?.title ?? "", source: "workout" });
+  };
 
   const onCast = () => {
     if (!premium) lockFeature("cast");

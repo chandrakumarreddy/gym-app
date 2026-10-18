@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "@lynx-js/react";
 
+import { haptic } from "@/api/haptics.ts";
 import { getLibrary } from "@/api/library.ts";
 import { Art } from "@/components/Art/Art.tsx";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
@@ -167,6 +168,11 @@ export function Library({ filter, section: initialSection }: RouteParams<"librar
   const { premium, ownedPrograms } = useEntitlement();
   const [reload, setReload] = useState(0);
   const { data: feed, loading } = useAsync(() => getLibrary(), [reload]);
+  const failed = !loading && !feed;
+
+  useEffect(() => {
+    if (failed) haptic("error");
+  }, [failed]);
 
   const [category, setCategory] = useState(filter ?? "all");
   const [section, setSection] = useState<Section | null>(
@@ -207,7 +213,8 @@ export function Library({ filter, section: initialSection }: RouteParams<"librar
     quick: useSkeletonCount("library.section.quick", 6, vm?.quick.length),
   };
 
-  const lockProgram = (p: Program) =>
+  const lockProgram = (p: Program) => {
+    haptic("warning");
     openLocked({
       contentType: "program",
       contentId: p.id,
@@ -216,11 +223,14 @@ export function Library({ filter, section: initialSection }: RouteParams<"librar
       packProductId: p.packProductId as `pack_${string}` | undefined,
       source: "library",
     });
+  };
   const openProgram = (p: Program) => push({ name: "program", programId: p.id });
   const openCoach = (c: Coach) => push({ name: "coach", coachId: c.id, source: "library" });
   const openQuick = (q: QuickWorkout, locked: boolean) => {
-    if (locked) openLocked({ contentType: "session", contentId: q.sessionId, title: q.title, source: "library" });
-    else push({ name: "workout", sessionId: q.sessionId, source: "library" });
+    if (locked) {
+      haptic("warning");
+      openLocked({ contentType: "session", contentId: q.sessionId, title: q.title, source: "library" });
+    } else push({ name: "workout", sessionId: q.sessionId, source: "library" });
   };
   const openResult = (e: SearchEntry) => {
     if (!feed) return;

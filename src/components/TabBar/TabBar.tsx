@@ -25,7 +25,7 @@ export function TabBar({ active }: { active?: TabId }) {
       {TABS.map((tab) => {
         const on = tab.id === current;
         return (
-          <Pressable key={tab.id} className="tab-bar-item" onTap={() => router.selectTab(tab.id)}>
+          <Pressable key={tab.id} className="tab-bar-item" haptic="selection" onTap={() => router.selectTab(tab.id)}>
             <Icon name={tab.icon} tone={on ? "ember" : "dim"} size={24} />
             <text className={`tab-bar-label${on ? " tab-bar-label-on" : ""}`}>{t(tab.label)}</text>
           </Pressable>

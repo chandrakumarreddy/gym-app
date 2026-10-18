@@ -8,7 +8,7 @@ type LockedWeeksCardProps = { title: string; sub: string; onTap?: () => void };
 
 export function LockedWeeksCard({ title, sub, onTap }: LockedWeeksCardProps) {
   return (
-    <Pressable className="locked-weeks" onTap={onTap}>
+    <Pressable className="locked-weeks" haptic="warning" onTap={onTap}>
       <view className="locked-weeks-lock">
         <Icon name="lock" tone="gold" size={15} />
       </view>

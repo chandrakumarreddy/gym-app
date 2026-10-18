@@ -16,7 +16,7 @@ type QuizOptionCardProps<T extends string> = {
 
 export function QuizOptionCard<T extends string>({ id, title, caption, icon, selected, onSelect, className = "" }: QuizOptionCardProps<T>) {
   return (
-    <Pressable className={`quiz-option${selected ? " quiz-option-selected" : ""} ${className}`} onTap={() => onSelect(id)}>
+    <Pressable className={`quiz-option${selected ? " quiz-option-selected" : ""} ${className}`} haptic="selection" onTap={() => onSelect(id)}>
       {icon ? (
         <view className={`quiz-option-icon${selected ? " quiz-option-icon-selected" : ""}`}>
           <Icon name={icon} tone={selected ? "text" : "ember"} size={22} />

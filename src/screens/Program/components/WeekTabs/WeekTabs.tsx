@@ -20,7 +20,7 @@ export function WeekTabs({ items, selected, onSelect, onLockedTap }: WeekTabsPro
         {items.map((it) => {
           const on = it.index === selected;
           return (
-            <Pressable key={it.index} className="week-tab" onTap={() => (it.locked ? onLockedTap(it.index) : onSelect(it.index))}>
+            <Pressable key={it.index} className="week-tab" haptic={it.locked ? "warning" : "selection"} onTap={() => (it.locked ? onLockedTap(it.index) : onSelect(it.index))}>
               <view className="week-tab-row">
                 <text className={`week-tab-label${on ? " week-tab-label-on" : ""}`}>{it.label}</text>
                 {it.locked ? <LockBadge variant="inline" size={14} className="week-tab-lock" /> : null}

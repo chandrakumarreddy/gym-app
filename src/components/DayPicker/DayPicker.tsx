@@ -18,7 +18,7 @@ export function DayPicker({ value, labels, onToggle, className = "" }: DayPicker
       {DAYS.map((d) => {
         const on = value.includes(d);
         return (
-          <Pressable key={d} className={`day${on ? " day-on" : ""}`} onTap={() => onToggle(d)}>
+          <Pressable key={d} className={`day${on ? " day-on" : ""}`} haptic="selection" onTap={() => onToggle(d)}>
             <text className={`day-label${on ? " day-label-on" : ""}`}>{labels[d]}</text>
           </Pressable>
         );

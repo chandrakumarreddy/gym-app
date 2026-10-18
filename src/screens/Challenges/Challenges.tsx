@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 import type { ReactNode } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getBadges, getCurrentChallenge, getLeaderboard, getUpcomingChallenges, joinChallenge } from "@/api/challenges.ts";
 import { Button } from "@/components/Button/Button.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
@@ -122,6 +123,22 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
     }
   }, [tab, challengeId, friendsError, badgesError]);
 
+  useEffect(() => {
+    if (current.error) haptic("error");
+  }, [current.error]);
+
+  useEffect(() => {
+    if (lbError) haptic("error");
+  }, [lbError]);
+
+  useEffect(() => {
+    if (friendsError) haptic("error");
+  }, [friendsError]);
+
+  useEffect(() => {
+    if (badgesError) haptic("error");
+  }, [badgesError]);
+
   const onLower = () => {
     if (tab === "leaderboard" && cursor.current) loadPage();
   };
@@ -163,15 +180,20 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
     setJoining(true);
     joinChallenge(challenge.id).then(
       () => {
+        haptic("success");
         setJoining(false);
         setJoinedNow(true);
       },
-      () => setJoining(false),
+      () => {
+        haptic("error");
+        setJoining(false);
+      },
     );
   };
 
   const onPremiumCard = (id: string) => {
     if (isPremium) return; // TODO: challenge detail route
+    haptic("warning");
     track("lock_tapped", { content: `challenge:${id}` });
     push({ name: "paywall", source: "challenges", contentId: id });
   };

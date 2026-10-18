@@ -1,5 +1,6 @@
 import type { ReactNode } from "@lynx-js/react";
 
+import type { HapticKind } from "@/api/haptics.ts";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import type { IconName } from "@/components/Icon/Icon.tsx";
 import { Pressable } from "@/components/Pressable/Pressable.tsx";
@@ -14,10 +15,11 @@ type ProfileRowProps = {
   chevron?: boolean;
   first?: boolean;
   disabled?: boolean;
+  haptic?: HapticKind | false;
   onTap?: () => void;
 };
 
-export function ProfileRow({ icon, label, value, trailing, chevron, first, disabled, onTap }: ProfileRowProps) {
+export function ProfileRow({ icon, label, value, trailing, chevron, first, disabled, haptic, onTap }: ProfileRowProps) {
   const body = (
     <>
       <view className="profile-row-tile">
@@ -32,7 +34,7 @@ export function ProfileRow({ icon, label, value, trailing, chevron, first, disab
   const cls = `profile-row${first ? "" : " profile-row-sep"}`;
   if (!onTap) return <view className={cls}>{body}</view>;
   return (
-    <Pressable className={cls} disabled={disabled} onTap={onTap}>
+    <Pressable className={cls} disabled={disabled} haptic={haptic} onTap={onTap}>
       {body}
     </Pressable>
   );

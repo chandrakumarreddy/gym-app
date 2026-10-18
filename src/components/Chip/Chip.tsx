@@ -35,7 +35,7 @@ export function Chip({ label, selected, showCheck, tone, variant = "pill", size 
   );
   if (!handler) return <view className={cls}>{body}</view>;
   return (
-    <Pressable className={cls} disabled={disabled} onTap={handler}>
+    <Pressable className={cls} disabled={disabled} haptic="selection" onTap={handler}>
       {body}
     </Pressable>
   );

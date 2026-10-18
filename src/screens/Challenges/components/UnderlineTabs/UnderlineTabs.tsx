@@ -14,7 +14,7 @@ export function UnderlineTabs<T extends string>({ tabs, value, onChange }: Under
       {tabs.map((tab) => {
         const active = tab.id === value;
         return (
-          <Pressable key={tab.id} className={`u-tab${active ? " u-tab-active" : ""}`} onTap={() => onChange(tab.id)}>
+          <Pressable key={tab.id} className={`u-tab${active ? " u-tab-active" : ""}`} haptic="selection" onTap={() => onChange(tab.id)}>
             <text className={`u-tab-label${active ? " u-tab-label-active" : ""}`}>{tab.label}</text>
           </Pressable>
         );

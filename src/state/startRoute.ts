@@ -1,7 +1,7 @@
 import { getSession } from "@/services/auth.ts";
 import { getCurrentPlan } from "@/state/plan.ts";
 import { getJSON } from "@/api/storage.ts";
-import { isQuizCompleted, QUIZ_DRAFT_KEY } from "@/state/quizAnswers.ts";
+import { isQuizCompleted, QUIZ_DRAFT_KEY, resetQuiz } from "@/state/quizAnswers.ts";
 import type { QuizDraft } from "@/types/quiz.ts";
 import type { Route } from "@/types/route.ts";
 
@@ -19,7 +19,7 @@ export function quizResumeRoute(): Route {
   return QUIZ_STEPS[draft ? Math.min(draft.lastStep + 1, QUIZ_STEPS.length - 1) : 0];
 }
 
-// Welcome only for a fresh start; signed out after that means the quiz (resumed, or retaken once done).
+// Welcome until the quiz is done (a half-done quiz is dropped); signed out after that means retaking it.
 export function startRoute(): Route {
   const plan = getCurrentPlan();
   const signedIn = getSession() !== null;
@@ -28,5 +28,6 @@ export function startRoute(): Route {
     if (!signedIn) return { name: "quiz-goal" };
     return plan ? { name: "plan-preview", planId: plan.id } : { name: "building" };
   }
-  return getJSON<QuizDraft>(QUIZ_DRAFT_KEY) ? quizResumeRoute() : { name: "welcome" };
+  resetQuiz();
+  return { name: "welcome" };
 }

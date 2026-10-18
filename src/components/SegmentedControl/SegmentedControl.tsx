@@ -25,6 +25,7 @@ export function SegmentedControl<T extends string>({ options, value, onChange, c
           <Pressable
             key={o.id}
             className={`segmented-item${active ? " segmented-item-active" : ""}`}
+            haptic={locked ? "warning" : "selection"}
             onTap={() => (locked ? onLocked?.(o.id) : onChange(o.id))}
           >
             <text className={`segmented-label${active ? " segmented-label-active" : ""}`}>{o.label}</text>

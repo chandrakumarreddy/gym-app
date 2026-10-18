@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getLastLog, getNextWeight } from "@/api/sessions.ts";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
 import { Button } from "@/components/Button/Button.tsx";
@@ -64,9 +65,12 @@ export function RestLog({ sessionId, onCollapse }: RestLogProps) {
     if (r <= 0) return;
     const id = setInterval(() => {
       const left = remainingMs(endsAt);
-      setRemainingSec(Math.ceil(left / 1000));
+      const sec = Math.ceil(left / 1000);
+      setRemainingSec(sec);
+      if (sec > 0 && sec <= 3) haptic("light");
       if (left <= 0) {
         clearInterval(id);
+        haptic("heavy");
         setRing({ remaining: 0, running: false });
         track("rest_ended", { exerciseId: exId, setIndex });
       }
@@ -144,6 +148,7 @@ export function RestLog({ sessionId, onCollapse }: RestLogProps) {
   };
 
   const onTipLocked = () => {
+    haptic("warning");
     track("lock_tapped", { content: "next_weight" });
     push({ name: "paywall", source: "rest_next_weight" });
   };
@@ -176,6 +181,7 @@ export function RestLog({ sessionId, onCollapse }: RestLogProps) {
       setConfirmEnd(true);
       return;
     }
+    haptic("heavy");
     closeSheet();
     replace({ name: "complete", sessionId });
   };

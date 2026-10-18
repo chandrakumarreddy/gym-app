@@ -14,7 +14,7 @@ type PremiumChallengeCardProps = {
 
 export function PremiumChallengeCard({ art, title, caption, onTap }: PremiumChallengeCardProps) {
   return (
-    <Pressable className="pch-card" onTap={onTap}>
+    <Pressable className="pch-card" haptic={false} onTap={onTap}>
       <Art spec={art} size={56} radius={14} />
       <view className="pch-body">
         <text className="pch-title" text-maxline="2">{title}</text>

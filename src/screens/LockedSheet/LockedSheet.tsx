@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "@lynx-js/react";
 
+import { haptic } from "@/api/haptics.ts";
 import { Button } from "@/components/Button/Button.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import { ProBadge } from "@/components/ProBadge/ProBadge.tsx";
@@ -23,6 +24,10 @@ export function LockedSheet({ contentType, contentId, title, sessionCount, packP
   const [buy, setBuy] = useState<BuyState>("idle");
   const [attempt, setAttempt] = useState(0);
   const showPack = contentType === "program" && !!packProductId;
+
+  useEffect(() => {
+    haptic("warning");
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -60,10 +65,18 @@ export function LockedSheet({ contentType, contentId, title, sessionCount, packP
     setBuy("buying");
     purchase(packProductId).then(
       (r) => {
-        if (r.status === "success") onClose();
-        else setBuy(r.status === "cancelled" ? "idle" : r.status === "pending" ? "pending" : "error");
+        if (r.status === "success") {
+          haptic("success");
+          onClose();
+          return;
+        }
+        if (r.status === "error") haptic("error");
+        setBuy(r.status === "cancelled" ? "idle" : r.status === "pending" ? "pending" : "error");
       },
-      () => setBuy("error"),
+      () => {
+        haptic("error");
+        setBuy("error");
+      },
     );
   };
 

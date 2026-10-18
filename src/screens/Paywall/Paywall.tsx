@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { Button } from "@/components/Button/Button.tsx";
 import { PlanSelector } from "@/components/PlanSelector/PlanSelector.tsx";
 import { ProBadge } from "@/components/ProBadge/ProBadge.tsx";
@@ -169,13 +170,17 @@ export function Paywall({ source, contentId }: RouteParams<"paywall">) {
     setMessage(null);
     const res = await purchase(selectedId as ProductId);
     if (res.status === "success") {
+      haptic("success");
       if (res.entitlements.premium.isTrial) track("trial_started", { product: selectedId, source });
       leave();
       return;
     }
     setStatus("ready");
     if (res.status === "pending") setMessage(t("paywall.pending"));
-    else if (res.status === "error") setMessage(t("paywall.purchaseError"));
+    else if (res.status === "error") {
+      haptic("error");
+      setMessage(t("paywall.purchaseError"));
+    }
   };
 
   const onRestore = async () => {
@@ -185,11 +190,14 @@ export function Paywall({ source, contentId }: RouteParams<"paywall">) {
     try {
       const ent = await restore();
       if (ent.premium.active) {
+        haptic("success");
         leave();
         return;
       }
+      haptic("warning");
       setMessage(t("paywall.noPurchases"));
     } catch {
+      haptic("error");
       setMessage(t("paywall.purchaseError"));
     }
     setStatus("ready");

@@ -1,6 +1,8 @@
 import { runOnMainThread, useEffect, useMainThreadRef } from "@lynx-js/react";
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
+
 import "./HealthToggle.css";
 
 type HealthToggleProps = {
@@ -36,7 +38,14 @@ export function HealthToggle({ on, disabled, onChange }: HealthToggleProps) {
   return (
     <view
       className={`health-toggle${disabled ? " health-toggle-disabled" : ""}`}
-      bindtap={disabled ? undefined : () => onChange(!on)}
+      bindtap={
+        disabled
+          ? undefined
+          : () => {
+              haptic("selection");
+              onChange(!on);
+            }
+      }
       main-thread:bindtap={disabled ? undefined : onFlip}
     >
       <view main-thread:ref={fillRef} className="health-toggle-fill" style={{ opacity: on ? 1 : 0 }} />

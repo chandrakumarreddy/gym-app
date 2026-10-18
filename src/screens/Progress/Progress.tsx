@@ -1,6 +1,7 @@
-import { useMemo, useState } from "@lynx-js/react";
+import { useEffect, useMemo, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { haptic } from "@/api/haptics.ts";
 import { getMuscleBalance, getProgress } from "@/api/progress.ts";
 import { BarChart } from "@/components/BarChart/BarChart.tsx";
 import { Button } from "@/components/Button/Button.tsx";
@@ -43,6 +44,14 @@ export function Progress() {
 
   const summary = useAsync(() => getProgress(range), [range, attempt]);
   const balance = useAsync<MuscleBalance | null>(() => (isPremium ? getMuscleBalance() : Promise.resolve(null)), [isPremium, balanceAttempt]);
+
+  useEffect(() => {
+    if (summary.error) haptic("error");
+  }, [summary.error]);
+
+  useEffect(() => {
+    if (balance.error) haptic("error");
+  }, [balance.error]);
 
   const vm = useMemo(() => (summary.data ? toProgressVM(summary.data, t) : null), [summary.data, t]);
   const recordCount = useSkeletonCount("progress.records", 2, vm ? (vm.empty ? 0 : vm.records.length) : undefined);

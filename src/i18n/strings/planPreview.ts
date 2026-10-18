@@ -18,6 +18,7 @@ export const planPreview = defineStrings(
     "planPreview.cta": "Save my plan",
     "planPreview.error": "Couldn't load your plan",
     "planPreview.retry": "Try again",
+    "planPreview.reset": "Start over",
   },
   {
     "planPreview.eyebrow": "आपका प्लान तैयार है",
@@ -36,5 +37,6 @@ export const planPreview = defineStrings(
     "planPreview.cta": "मेरा प्लान सेव करें",
     "planPreview.error": "आपका प्लान लोड नहीं हो पाया",
     "planPreview.retry": "फिर कोशिश करें",
+    "planPreview.reset": "फिर से शुरू करें",
   },
 );

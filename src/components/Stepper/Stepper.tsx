@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "@lynx-js/react";
 import type { MainThread } from "@lynx-js/types";
 
+import { haptic } from "@/api/haptics.ts";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import { formatKg } from "@/utils/format.ts";
 
@@ -48,6 +49,7 @@ export function Stepper({ label, value, step, min, max, format = "int", unit, on
     const next = clamp(valueRef.current + dir * step, min, max);
     if (next !== valueRef.current) {
       valueRef.current = next;
+      haptic("selection");
       onChange(next);
     }
   };
