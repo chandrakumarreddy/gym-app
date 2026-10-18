@@ -1,0 +1,17 @@
+:root {
+  --bg: #0d0b0a;
+  --surface: #171311;
+  --surface-2: #201a17;
+  --surface-3: #2b231f;
+  --text: #f7f3f0;
+  --muted: #a8a09a;
+  --dim: #6f6762;
+  --ember: #ff5b1f;
+  --gold: #ffc048;
+  --green: #34d399;
+
+  --radius-chip: 10px;
+  --radius-button: 16px;
+  --radius-card: 22px;
+  --radius-hero: 28px;
+}

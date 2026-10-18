@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+ splash screen (androidx.core:core-splashscreen also back-ports it to API 23+).
+     In AndroidManifest.xml set android:theme="@style/Theme.FitCue.Starting" on the launcher activity,
+     then call installSplashScreen() before super.onCreate(). -->
+<resources>
+    <style name="Theme.FitCue.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.FitCue</item>
+    </style>
+</resources>

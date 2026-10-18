@@ -1,0 +1,33 @@
+PRIVATE_SPECS = 'https://github.com/lynx-family/Specs.git'
+TRUNK_SPECS = 'https://cdn.cocoapods.org/'
+
+source PRIVATE_SPECS
+source TRUNK_SPECS
+
+platform :ios, '15.0'
+
+target 'GymApp' do
+  pod 'Lynx', '4.1.0', :source => PRIVATE_SPECS, :subspecs => ['Framework']
+  pod 'PrimJS', '4.1.1', :subspecs => ['quickjs', 'napi']
+
+  pod 'LynxService', '4.1.0', :source => PRIVATE_SPECS, :subspecs => ['Image', 'Log', 'Http']
+  pod 'SDWebImage', '5.15.5'
+  pod 'SDWebImageWebPCoder', '0.11.0'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+      config.build_settings['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
+      flags = ['$(inherited)', '-Wno-error', '-Wno-c99-designator', '-Wno-deprecated-declarations', '-Wno-deprecated-implementations']
+      config.build_settings['OTHER_CFLAGS'] = flags
+      config.build_settings['OTHER_CPLUSPLUSFLAGS'] = flags
+    end
+    next unless target.respond_to?(:source_build_phase)
+    target.source_build_phase.files.each do |file|
+      flags = file.settings && file.settings['COMPILER_FLAGS']
+      file.settings['COMPILER_FLAGS'] = flags.gsub(/(^|\s)-Werror(?=\s|$)/, '') if flags
+    end
+  end
+end
