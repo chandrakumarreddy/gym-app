@@ -7,7 +7,7 @@ import type { LockedSheetParams } from "@/types/locked.ts";
 import { isTabId } from "@/types/route.ts";
 import type { Route, RouteName, RouteOf, TabId } from "@/types/route.ts";
 
-export type Overlay = { kind: "locked"; params: LockedSheetParams };
+export type Overlay = { kind: "locked"; params: LockedSheetParams } | { kind: "haptics" };
 
 type NavState =
   | { mode: "stack"; stack: Route[] }
@@ -17,6 +17,7 @@ type Router = {
   route: Route;
   mode: NavState["mode"];
   tab: TabId | null;
+  depth: number;
   showTabBar: boolean;
   canGoBack: boolean;
   push: (route: Route) => void;
@@ -26,6 +27,7 @@ type Router = {
   selectTab: (tab: TabId) => void;
   overlay: Overlay | null;
   openLocked: (params: LockedSheetParams) => boolean;
+  openHapticsPrompt: () => void;
   closeOverlay: () => void;
 };
 
@@ -78,6 +80,7 @@ export function RouterProvider({ initial, children }: { initial: Route; children
       route: stack[stack.length - 1],
       mode: nav.mode,
       tab: nav.mode === "tabs" ? nav.tab : null,
+      depth: stack.length,
       showTabBar: nav.mode === "tabs" && stack.length === 1,
       canGoBack: stack.length > 1,
       push: (route) =>
@@ -105,6 +108,7 @@ export function RouterProvider({ initial, children }: { initial: Route; children
         setOverlay({ kind: "locked", params });
         return true;
       },
+      openHapticsPrompt: () => setOverlay((o) => o ?? { kind: "haptics" }),
       closeOverlay: () => setOverlay(null),
     };
   }, [nav, overlay]);

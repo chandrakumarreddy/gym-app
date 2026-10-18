@@ -1,11 +1,11 @@
 package com.gymapp
 
+import android.Manifest
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.ApplicationInfo
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Build
@@ -37,7 +37,6 @@ class MainActivity : Activity() {
     // The rendered view waiting for JS to pick its start route before it's revealed.
     private var pending: LynxView? = null
     private var splashIconDoneAt = 0L
-    private val isDebug get() = applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
 
     private val reloadReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = render()
@@ -50,6 +49,9 @@ class MainActivity : Activity() {
                 layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             }
         }
+        // Status bar painted in --ember on every screen.
+        @Suppress("DEPRECATION")
+        window.statusBarColor = getColor(R.color.ember)
         applyStatusBar()
         // The system splash is a plain bg frame; drop it instantly so our splash (hero + icon) shows as one.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -59,15 +61,17 @@ class MainActivity : Activity() {
         setContentView(container)
         showSplash()
         render()
-        if (isDebug) {
+        if (BuildConfig.DEBUG) {
+            // Exported so `adb shell am broadcast` reaches it; DUMP is held by shell but not by third-party apps.
             ContextCompat.registerReceiver(
-                this, reloadReceiver, IntentFilter(RELOAD_ACTION), ContextCompat.RECEIVER_EXPORTED
+                this, reloadReceiver, IntentFilter(RELOAD_ACTION), Manifest.permission.DUMP, null,
+                ContextCompat.RECEIVER_EXPORTED
             )
         }
     }
 
     override fun onDestroy() {
-        if (isDebug) unregisterReceiver(reloadReceiver)
+        if (BuildConfig.DEBUG) unregisterReceiver(reloadReceiver)
         for (i in 0 until container.childCount) (container.getChildAt(i) as? LynxView)?.destroy()
         super.onDestroy()
     }
@@ -82,7 +86,7 @@ class MainActivity : Activity() {
 
     private fun applyStatusBar() {
         val controller = WindowCompat.getInsetsController(window, window.decorView)
-        WindowCompat.setDecorFitsSystemWindows(window, !fullBleed)
+        controller.isAppearanceLightStatusBars = false
         if (fullBleed) {
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             controller.hide(WindowInsetsCompat.Type.statusBars())
@@ -143,7 +147,7 @@ class MainActivity : Activity() {
         })
         pending = next
         container.addView(next, 0)
-        next.renderTemplateUrl(if (isDebug) DEV_BUNDLE_URL else "main.lynx.bundle", "")
+        next.renderTemplateUrl(if (BuildConfig.DEBUG) DEV_BUNDLE_URL else "main.lynx.bundle", "")
     }
 
     // Hide the splash and drop the views this one replaces.

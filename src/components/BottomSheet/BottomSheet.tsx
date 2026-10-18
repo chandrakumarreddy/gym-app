@@ -2,6 +2,8 @@ import { runOnBackground, runOnMainThread, useEffect, useMainThreadRef, useRef, 
 import type { ReactNode } from "@lynx-js/react";
 import type { LayoutChangeEvent, MainThread } from "@lynx-js/types";
 
+import { Glass } from "@/components/Glass/Glass.tsx";
+
 import "./BottomSheet.css";
 
 type BottomSheetProps = {
@@ -17,6 +19,8 @@ type Geometry = { panelH: number; snapYs: number[]; snapMids: number[]; dismissY
 
 const SETTLE_MS = 220;
 const FLING_VY = 0.8;
+// One frame after parking, so the open animation starts from below the screen.
+const OPEN_DELAY_MS = 32;
 const SCRIM_MAX = 0.6;
 const EASE = `transform ${SETTLE_MS}ms cubic-bezier(.2,.8,.2,1)`;
 const SCRIM_EASE = `opacity ${SETTLE_MS}ms linear`;
@@ -31,6 +35,8 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
   const [mounted, setMounted] = useState(visible);
   const [geo, setGeo] = useState<Geometry | null>(null);
   const closing = useRef(false);
+  const opened = useRef(false);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const panelRef = useMainThreadRef<MainThread.Element | null>(null);
   const scrimRef = useMainThreadRef<MainThread.Element | null>(null);
@@ -54,6 +60,15 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
     panelRef.current?.setStyleProperty("transform", `translateY(${y}px)`);
     scrimRef.current?.setStyleProperty("transition", SCRIM_EASE);
     scrimRef.current?.setStyleProperty("opacity", String(opacity));
+  }
+
+  // Park the panel just below the screen in px, so the open transition has a committed start.
+  function park(y: number) {
+    "main thread";
+    panelRef.current?.setStyleProperty("transition", "none");
+    panelRef.current?.setStyleProperty("transform", `translateY(${y}px)`);
+    scrimRef.current?.setStyleProperty("transition", "none");
+    scrimRef.current?.setStyleProperty("opacity", "0");
   }
 
   function onStart(e: MainThread.TouchEvent) {
@@ -96,8 +111,9 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
   }
 
   function finishClose() {
-    setTimeout(() => {
+    settleTimer.current = setTimeout(() => {
       closing.current = false;
+      opened.current = false;
       setMounted(false);
       setGeo(null);
       onDismiss();
@@ -125,8 +141,9 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
     } else if (mounted && geo && !closing.current) {
       closing.current = true;
       void runOnMainThread(animateTo)(geo.panelH, 0);
-      setTimeout(() => {
+      settleTimer.current = setTimeout(() => {
         closing.current = false;
+        opened.current = false;
         setMounted(false);
         setGeo(null);
       }, SETTLE_MS);
@@ -135,8 +152,23 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
     }
   }, [visible]);
 
+  useEffect(
+    () => () => {
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+    },
+    [],
+  );
+
   useEffect(() => {
-    if (geo && visible && !closing.current) void runOnMainThread(animateTo)(geo.snapYs[0], SCRIM_MAX);
+    if (!geo || !visible || closing.current) return;
+    if (opened.current) {
+      void runOnMainThread(animateTo)(geo.snapYs[0], SCRIM_MAX);
+      return;
+    }
+    opened.current = true;
+    void runOnMainThread(park)(geo.panelH);
+    const id = setTimeout(() => void runOnMainThread(animateTo)(geo.snapYs[0], SCRIM_MAX), OPEN_DELAY_MS);
+    return () => clearTimeout(id);
   }, [geo?.panelH]);
 
   const onLayout = (e: LayoutChangeEvent) => {
@@ -150,6 +182,7 @@ export function BottomSheet({ visible, onDismiss, snapPoints = [1], dismissible 
     <view className="sheet-root">
       <view main-thread:ref={scrimRef} className="sheet-scrim" bindtap={dismissible ? close : undefined} />
       <view main-thread:ref={panelRef} className="sheet-panel" bindlayoutchange={onLayout} accessibility-element>
+        <Glass radius={30} corners="top" />
         <view
           className="sheet-handle-area"
           main-thread:bindtouchstart={onStart}

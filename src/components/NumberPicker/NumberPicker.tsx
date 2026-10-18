@@ -1,4 +1,4 @@
-import { useEffect, useMainThreadRef, useMemo, useRef, useState } from "@lynx-js/react";
+import { runOnMainThread, useEffect, useMainThreadRef, useMemo, useRef, useState } from "@lynx-js/react";
 import type { LayoutChangeEvent, MainThread, ScrollEndEvent } from "@lynx-js/types";
 
 import { haptic } from "@/api/haptics.ts";
@@ -67,6 +67,16 @@ export function NumberPicker({ variant = "digits", min, max, step = 1, value, on
   const itemsRef = useMainThreadRef<MainThread.Element[]>([]);
   const valueTextRef = useMainThreadRef<MainThread.Element | null>(null);
   const lastIdxRef = useMainThreadRef(-1);
+  const labelsRef = useMainThreadRef<string[]>([]);
+
+  function setLabels(next: string[]) {
+    "main thread";
+    labelsRef.current = next;
+  }
+
+  useEffect(() => {
+    if (variant === "ruler") void runOnMainThread(setLabels)(labels);
+  }, [labels, variant]);
 
   function onDigitsScroll(e: MainThreadScrollEvent) {
     "main thread";
@@ -85,9 +95,9 @@ export function NumberPicker({ variant = "digits", min, max, step = 1, value, on
   function onRulerScroll(e: MainThreadScrollEvent) {
     "main thread";
     const i = Math.round(e.detail.scrollLeft / TICK_PX);
-    if (i !== lastIdxRef.current && i >= 0 && i < labels.length) {
+    if (i !== lastIdxRef.current && i >= 0 && i < labelsRef.current.length) {
       lastIdxRef.current = i;
-      valueTextRef.current?.setAttribute("text", labels[i]);
+      valueTextRef.current?.setAttribute("text", labelsRef.current[i]);
     }
   }
 

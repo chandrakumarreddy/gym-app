@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "@lynx-js/react";
 
 import { getHome } from "@/api/home.ts";
 import { haptic } from "@/api/haptics.ts";
+import { appReady } from "@/api/systemBars.ts";
 import { Avatar } from "@/components/Avatar/Avatar.tsx";
 import { Button } from "@/components/Button/Button.tsx";
 import { Chip } from "@/components/Chip/Chip.tsx";
@@ -99,6 +100,7 @@ function HomeSkeleton({ premium, onUpgrade }: { premium: boolean; onUpgrade: () 
         <Skeleton width={160} height={200} radius={16} className="home-tile" />
         <Skeleton width={160} height={200} radius={16} className="home-tile" />
       </view>
+      <view className="tab-clearance" />
     </scroll-view>
   );
 }
@@ -111,6 +113,9 @@ export function Home() {
   const { data: feed, loading } = useAsync(getHome, [reload]);
   const [helloKey] = useState(() => greetingKey(new Date()));
   const failed = !loading && !feed;
+  useEffect(() => {
+    if (!loading) appReady();
+  }, [loading]);
 
   useEffect(() => {
     if (failed) haptic("error");
@@ -281,6 +286,7 @@ export function Home() {
           </scroll-view>
         ) : null}
         <view className="home-bottom-pad" />
+        <view className="tab-clearance" />
       </scroll-view>
     </view>
   );

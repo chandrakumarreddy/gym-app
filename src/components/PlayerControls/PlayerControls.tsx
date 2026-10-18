@@ -1,3 +1,4 @@
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import { LockBadge } from "@/components/LockBadge/LockBadge.tsx";
 import { Pressable } from "@/components/Pressable/Pressable.tsx";
@@ -20,6 +21,7 @@ export function PlayerControls({ playing, speedLabel, captionsOn, speedLocked, o
   return (
     <view className="player-controls">
       <Pressable className="player-controls-side" feedback="scale" onTap={onSpeed}>
+        <Glass radius={12} />
         <text className="player-controls-speed">{speedLabel}</text>
         {speedLocked ? <LockBadge variant="inline" size={12} /> : null}
       </Pressable>
@@ -33,6 +35,7 @@ export function PlayerControls({ playing, speedLabel, captionsOn, speedLocked, o
         <Icon name="next" size={26} />
       </Pressable>
       <Pressable className={`player-controls-side${captionsOn ? " player-controls-side-on" : ""}`} feedback="scale" onTap={onCaptions}>
+        <Glass radius={12} />
         <Icon name="cc" tone={captionsOn ? "text" : "muted"} size={22} />
       </Pressable>
     </view>

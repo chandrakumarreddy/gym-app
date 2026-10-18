@@ -1,3 +1,4 @@
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 
 import "./LockBadge.css";
@@ -13,6 +14,7 @@ export function LockBadge({ size, variant = "circle", className = "" }: LockBadg
   const d = size ?? 30;
   return (
     <view className={`lock-badge ${className}`} style={{ width: `${d}px`, height: `${d}px` }}>
+      <Glass radius={999} />
       <Icon name="lock" tone="text" size={Math.round(d * 0.5)} />
     </view>
   );

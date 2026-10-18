@@ -28,6 +28,10 @@ android {
         versionName = "1.0"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     sourceSets["main"].assets.srcDir(lynxAssetsDir)
 
     buildTypes {

@@ -341,6 +341,7 @@ export function Profile() {
 
           {toast ? <text className={`profile-toast profile-toast-${toast.tone}`}>{t(toast.key)}</text> : null}
         </view>
+        <view className="tab-clearance" />
       </scroll-view>
 
       <BottomSheet visible={sheet === "settings"} onDismiss={() => setSheet(null)} title={t("profile.settings")}>

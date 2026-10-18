@@ -14,5 +14,7 @@ declare let NativeModules: {
   };
   NativeHapticsModule?: {
     trigger(kind: string): void;
+    isEnabled(): boolean;
+    openSettings(): void;
   };
 };

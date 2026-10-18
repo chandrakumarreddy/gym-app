@@ -16,15 +16,89 @@
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-.app-screen-tabs {
-  bottom: var(--tabbar-h);
+  background-color: var(--bg);
+  /* Opaque per screen, so a sliding screen fully covers the one beneath. */
+  background-image: var(--layer-image);
 }
 
 .app-tabbar {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 24px;
+  right: 24px;
+  bottom: 6px;
+}
+
+/* End of a tab screen's scroll content, so the floating tab bar never covers the last item. */
+.tab-clearance {
+  height: var(--tabbar-clearance);
+  flex-shrink: 0;
+}
+
+.app-screen-in-push {
+  animation: screen-in-push 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-screen-out-push {
+  animation: screen-out-push 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-screen-in-pop {
+  animation: screen-in-pop 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-screen-out-pop {
+  animation: screen-out-pop 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-screen-fade {
+  animation: screen-fade 180ms linear forwards;
+}
+
+@keyframes screen-in-push {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes screen-out-push {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-30%);
+    opacity: 0.6;
+  }
+}
+
+@keyframes screen-in-pop {
+  from {
+    transform: translateX(-30%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes screen-out-pop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes screen-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

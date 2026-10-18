@@ -12,7 +12,7 @@
 
 .screen-header-solid {
   height: 56px;
-  background-color: var(--bg);
+  background-color: var(--screen-bg);
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: var(--line);

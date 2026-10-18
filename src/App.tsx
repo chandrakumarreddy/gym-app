@@ -1,14 +1,18 @@
-import { useEffect } from "@lynx-js/react";
+import { useEffect, useRef } from "@lynx-js/react";
 
 import "./theme/tokens.css";
 import "./App.css";
 
-import { getJSON } from "@/api/storage.ts";
+import { hapticsEnabled } from "@/api/haptics.ts";
+import { isIOS } from "@/api/platform.ts";
+import { getJSON, setJSON } from "@/api/storage.ts";
 import { appReady, setFullBleed } from "@/api/systemBars.ts";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
+import { HapticsPrompt } from "@/components/HapticsPrompt/HapticsPrompt.tsx";
 import { TabBar } from "@/components/TabBar/TabBar.tsx";
 import { LOCALE_KEY, LocaleProvider, type Locale } from "@/hooks/useLocale.tsx";
 import { RouterProvider, useRouter } from "@/hooks/useRouter.tsx";
+import { useScreenLayers } from "@/hooks/useScreenLayers.ts";
 import { Building } from "@/screens/Building/Building.tsx";
 import { Challenges } from "@/screens/Challenges/Challenges.tsx";
 import { CoachProfile } from "@/screens/CoachProfile/CoachProfile.tsx";
@@ -34,6 +38,10 @@ import { WinBack } from "@/screens/WinBack/WinBack.tsx";
 import { Workout } from "@/screens/Workout/Workout.tsx";
 import { startRoute } from "@/state/startRoute.ts";
 import type { Route } from "@/types/route.ts";
+
+const HAPTICS_PROMPTED_KEY = "fitcue.hapticsPrompted";
+// Home holds the splash until its feed settles; never longer than this.
+const SPLASH_MAX_MS = 4000;
 
 function Screen({ route }: { route: Route }) {
   switch (route.name) {
@@ -86,24 +94,45 @@ function Screen({ route }: { route: Route }) {
 
 function OverlayHost() {
   const { overlay, closeOverlay } = useRouter();
+  // Keep the last sheet's content while it slides out.
+  const last = useRef(overlay);
+  if (overlay) last.current = overlay;
+  const shown = overlay ?? last.current;
   return (
     <BottomSheet visible={overlay !== null} onDismiss={closeOverlay}>
-      {overlay?.kind === "locked" ? <LockedSheet {...overlay.params} onClose={closeOverlay} /> : null}
+      {shown?.kind === "locked" ? <LockedSheet {...shown.params} onClose={closeOverlay} /> : null}
+      {shown?.kind === "haptics" ? <HapticsPrompt onClose={closeOverlay} /> : null}
     </BottomSheet>
   );
 }
 
 function Shell() {
-  const { route, showTabBar } = useRouter();
+  const { route, depth, tab, showTabBar, openHapticsPrompt } = useRouter();
+  const layers = useScreenLayers(route, depth, tab);
   const fullBleed = route.name === "welcome";
   useEffect(() => setFullBleed(fullBleed), [fullBleed]);
-  useEffect(() => appReady(), []);
+  useEffect(() => {
+    if (route.name !== "home") {
+      appReady();
+      return;
+    }
+    const id = setTimeout(appReady, SPLASH_MAX_MS);
+    return () => clearTimeout(id);
+  }, []);
+  const atHome = route.name === "home";
+  useEffect(() => {
+    if (!atHome || getJSON<boolean>(HAPTICS_PROMPTED_KEY) || hapticsEnabled()) return;
+    setJSON(HAPTICS_PROMPTED_KEY, true);
+    openHapticsPrompt();
+  }, [atHome]);
 
   return (
     <view className="app-shell">
-      <view className={`app-screen${showTabBar ? " app-screen-tabs" : ""}`}>
-        <Screen route={route} />
-      </view>
+      {layers.map((l) => (
+        <view key={l.id} className={`app-screen${l.anim ? ` app-screen-${l.anim}` : ""}`} user-interaction-enabled={!l.leaving}>
+          <Screen route={l.route} />
+        </view>
+      ))}
       {showTabBar ? (
         <view className="app-tabbar">
           <TabBar />
@@ -120,7 +149,7 @@ export function App() {
   const initial = startRoute();
 
   return (
-    <view className="app">
+    <view className={`app${isIOS ? " app-ios" : ""}`}>
       <LocaleProvider initial={locale}>
         <RouterProvider initial={initial}>
           <Shell />

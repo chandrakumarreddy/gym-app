@@ -1,3 +1,4 @@
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import type { IconName } from "@/components/Icon/Icon.tsx";
 import { Pressable } from "@/components/Pressable/Pressable.tsx";
@@ -28,6 +29,7 @@ export function Chip({ label, selected, showCheck, tone, variant = "pill", size 
   const labelCls = `chip-label chip-label-${t}${size === "sm" ? " chip-label-sm" : ""}${selected ? " chip-label-selected" : ""}`;
   const body = (
     <>
+      {t === "glass" ? <Glass radius={999} /> : null}
       {showCheck && selected ? <Icon name="check" tone="ember" size={14} className="chip-icon" /> : null}
       {icon ? <Icon name={icon} tone={t === "ember" ? "text" : "muted"} size={14} className="chip-icon" /> : null}
       <text className={labelCls}>{label}</text>

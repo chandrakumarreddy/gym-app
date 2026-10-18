@@ -61,11 +61,13 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
   const cursor = useRef<string | undefined>(undefined);
   const busy = useRef(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const gen = useRef(0);
   const meName = t("common.you");
 
-  const appendChunked = (entries: LeaderboardEntry[], done: () => void) => {
+  const appendChunked = (entries: LeaderboardEntry[], g: number, done: () => void) => {
     let i = 0;
     const step = () => {
+      if (g !== gen.current) return;
       const chunk = entries.slice(i, i + CHUNK).map((e) => toRow(e, locale, meName));
       i += CHUNK;
       setRows((prev) => [...prev, ...chunk]);
@@ -78,19 +80,22 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
   const loadPage = () => {
     if (!challengeId || busy.current) return;
     busy.current = true;
+    const g = gen.current;
     const first = cursor.current === undefined && rows.length === 0;
     setLbError(false);
     setLbPhase(first ? "initial" : "more");
     getLeaderboard(challengeId, "global", cursor.current).then(
       (page) => {
+        if (g !== gen.current) return;
         cursor.current = page.nextCursor ?? "";
         if (first) setMe(toRow(page.me, locale, meName));
-        appendChunked(page.entries, () => {
+        appendChunked(page.entries, g, () => {
           busy.current = false;
           setLbPhase("idle");
         });
       },
       () => {
+        if (g !== gen.current) return;
         busy.current = false;
         setLbPhase("idle");
         if (first) setLbError(true);
@@ -107,6 +112,7 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
     busy.current = false;
     if (challengeId) loadPage();
     return () => {
+      gen.current++;
       if (timer.current) clearTimeout(timer.current);
     };
   }, [challengeId, locale]);
@@ -376,6 +382,7 @@ export function Challenges({ challengeId: _challengeId, tab: initialTab }: Route
         {body}
         <list-item key="foot" item-key="foot" className="challenges-item">
           <view className="challenges-foot" />
+          <view className="tab-clearance" />
         </list-item>
       </list>
     </view>

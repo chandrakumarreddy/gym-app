@@ -187,6 +187,7 @@ export function Progress() {
             <Heatmap cells={PLACEHOLDER_CELLS} />
           </BlurLockCard>
         )}
+        <view className="tab-clearance" />
       </scroll-view>
     </view>
   );

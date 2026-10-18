@@ -74,8 +74,14 @@
   --ruler-fade-l: linear-gradient(90deg, #0d0b0a 0%, rgba(13, 11, 10, 0) 100%);
   --ruler-fade-r: linear-gradient(270deg, #0d0b0a 0%, rgba(13, 11, 10, 0) 100%);
 
-  --tabbar-bg: rgba(13, 11, 10, 0.96);
-  --tabbar-h: 86px;
+  --screen-bg: #0d0b0a;
+  --layer-image: linear-gradient(180deg, rgba(13, 11, 10, 0) 0%, rgba(13, 11, 10, 0) 100%);
+  --ambient-grad: radial-gradient(90% 45% at 85% 0%, rgba(255, 91, 31, 0.22) 0%, rgba(255, 91, 31, 0) 100%);
+
+  --tabbar-bg: #241d1a;
+  --tabbar-line: rgba(255, 255, 255, 0.1);
+  --tabbar-h: 46px;
+  --tabbar-clearance: 64px;
 
   --radius-chip: 10px;
   --radius-sm: 12px;
@@ -85,4 +91,20 @@
   --radius-hero: 28px;
   --radius-sheet: 30px;
   --radius-pill: 999px;
+}
+
+/* iOS: screens go transparent over an ambient glow and surfaces turn translucent, so every card,
+   sheet and bar reads as glass. Floating chrome adds a native backdrop blur (Glass.tsx). */
+.app-ios {
+  --screen-bg: rgba(13, 11, 10, 0);
+  --layer-image: var(--ambient-grad);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.09);
+  --surface-3: rgba(255, 255, 255, 0.13);
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(13, 11, 10, 0.3);
+  --tabbar-bg: rgba(255, 255, 255, 0.05);
+  --tabbar-line: rgba(255, 255, 255, 0.16);
 }

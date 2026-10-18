@@ -1,5 +1,6 @@
 import { useEffect, useState } from "@lynx-js/react";
 
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { useT } from "@/hooks/useLocale.tsx";
 import { pad2 } from "@/utils/format.ts";
 
@@ -48,6 +49,7 @@ export function Countdown({ endsAt, mode = "hms", onEnd, className = "" }: Count
     <view className={`countdown ${className}`}>
       {parts.map((p) => (
         <view key={p.l} className="countdown-part">
+          <Glass radius={12} />
           <text className="countdown-value">{p.v}</text>
           <text className="countdown-label">{p.l}</text>
         </view>

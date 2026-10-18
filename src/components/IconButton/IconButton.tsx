@@ -1,5 +1,6 @@
 import type { ReactNode } from "@lynx-js/react";
 
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import type { IconName, IconTone } from "@/components/Icon/Icon.tsx";
 import { Pressable } from "@/components/Pressable/Pressable.tsx";
@@ -27,6 +28,7 @@ export function IconButton({ icon, variant = "round", size = 40, iconSize, tone,
       disabled={disabled}
       onTap={onTap}
     >
+      {variant === "plain" ? null : <Glass radius={999} />}
       <Icon name={icon} tone={tone ?? "text"} size={iconSize ?? Math.round(size * 0.5)} />
       {badge ? <view className="icon-button-badge">{badge}</view> : null}
     </Pressable>

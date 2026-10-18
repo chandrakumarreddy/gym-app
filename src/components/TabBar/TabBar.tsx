@@ -1,3 +1,4 @@
+import { Glass } from "@/components/Glass/Glass.tsx";
 import { Icon } from "@/components/Icon/Icon.tsx";
 import type { IconName } from "@/components/Icon/Icon.tsx";
 import { Pressable } from "@/components/Pressable/Pressable.tsx";
@@ -22,12 +23,20 @@ export function TabBar({ active }: { active?: TabId }) {
   const current = active ?? router.tab;
   return (
     <view className="tab-bar">
+      <Glass radius={999} />
       {TABS.map((tab) => {
         const on = tab.id === current;
         return (
-          <Pressable key={tab.id} className="tab-bar-item" haptic="selection" onTap={() => router.selectTab(tab.id)}>
-            <Icon name={tab.icon} tone={on ? "ember" : "dim"} size={24} />
-            <text className={`tab-bar-label${on ? " tab-bar-label-on" : ""}`}>{t(tab.label)}</text>
+          <Pressable
+            key={tab.id}
+            className="tab-bar-item"
+            feedback="scale"
+            haptic="selection"
+            onTap={() => router.selectTab(tab.id)}
+          >
+            <view className={`tab-bar-dot${on ? " tab-bar-dot-on" : ""}`} accessibility-element accessibility-label={t(tab.label)}>
+              <Icon name={tab.icon} tone={on ? "text" : "muted"} size={17} />
+            </view>
           </Pressable>
         );
       })}

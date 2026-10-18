@@ -310,6 +310,7 @@ export function Library({ filter, section: initialSection }: RouteParams<"librar
           <view className="library-col library-pad">
             {sectionBody}
           </view>
+          <view className="tab-clearance" />
         </scroll-view>
       </view>
     );
@@ -418,6 +419,7 @@ export function Library({ filter, section: initialSection }: RouteParams<"librar
           </view>
         )}
         <view className="library-bottom-pad" />
+        <view className="tab-clearance" />
       </scroll-view>
 
       <BottomSheet visible={sheetOpen} onDismiss={() => setSheetOpen(false)} title={t("library.filters")}>

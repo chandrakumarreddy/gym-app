@@ -27,6 +27,10 @@ export const common = defineStrings(
     "common.ended": "Ended",
     "common.speaking": "Speaking",
     "common.you": "You",
+    "common.haptics.title": "Turn on touch feedback",
+    "common.haptics.body": "Touch feedback is off on your phone, so FitCue can't buzz when you tap, finish a set or hit a PR. Open settings and turn on Touch feedback, under Haptics or Vibration & haptics.",
+    "common.haptics.open": "Open settings",
+    "common.haptics.later": "Not now",
   },
   {
     "common.tab.home": "होम",
@@ -54,5 +58,9 @@ export const common = defineStrings(
     "common.ended": "समाप्त",
     "common.speaking": "बोल रहे हैं",
     "common.you": "आप",
+    "common.haptics.title": "टच फ़ीडबैक चालू करें",
+    "common.haptics.body": "आपके फ़ोन में टच फ़ीडबैक बंद है, इसलिए टैप करने, सेट पूरा करने या PR बनाने पर FitCue वाइब्रेट नहीं कर सकता। सेटिंग खोलें और हैप्टिक्स या वाइब्रेशन और हैप्टिक्स में टच फ़ीडबैक चालू करें।",
+    "common.haptics.open": "सेटिंग खोलें",
+    "common.haptics.later": "अभी नहीं",
   },
 );
