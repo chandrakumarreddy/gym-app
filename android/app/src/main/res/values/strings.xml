@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FitCue</string>
+    <string name="app_lock_title">Unlock FitCue</string>
+    <string name="app_lock_unlock">Unlock</string>
 </resources>

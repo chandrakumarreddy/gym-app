@@ -17,4 +17,9 @@ declare let NativeModules: {
     isEnabled(): boolean;
     openSettings(): void;
   };
+  NativeAppLockModule?: {
+    isAvailable(): boolean;
+    isEnabled(): boolean;
+    setEnabled(enabled: boolean, callback: (ok: boolean) => void): void;
+  };
 };

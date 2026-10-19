@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "@lynx-js/react";
 
 import { track } from "@/api/analytics.ts";
+import { appLockAvailable, appLockEnabled, setAppLock } from "@/api/appLock.ts";
 import { haptic } from "@/api/haptics.ts";
 import { getDownloadsSummary, getProfile, updateProfile } from "@/api/profile.ts";
 import { getJSON, setJSON } from "@/api/storage.ts";
@@ -184,6 +185,17 @@ export function Profile() {
     }
   };
 
+  const [lockAvailable] = useState(appLockAvailable);
+  const [appLock, setAppLockOn] = useState(appLockEnabled);
+  // Remounts the toggle so it snaps back when the fingerprint or PIN check is cancelled.
+  const [lockKey, setLockKey] = useState(0);
+
+  const onAppLock = async (on: boolean) => {
+    track("app_lock_toggled", { on });
+    if (await setAppLock(on)) setAppLockOn(on);
+    else setLockKey((k) => k + 1);
+  };
+
   const onHealth = async (on: boolean) => {
     if (!isPremium) {
       haptic("warning");
@@ -310,6 +322,13 @@ export function Profile() {
               haptic={false}
               onTap={isPremium ? undefined : () => void onHealth(true)}
             />
+            {lockAvailable ? (
+              <ProfileRow
+                icon="shield"
+                label={t("profile.appLock")}
+                trailing={<HealthToggle key={lockKey} on={appLock} onChange={(on) => void onAppLock(on)} />}
+              />
+            ) : null}
             <ProfileRow
               icon="bell"
               label={t("profile.reminders")}

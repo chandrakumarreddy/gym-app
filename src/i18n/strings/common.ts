@@ -31,6 +31,10 @@ export const common = defineStrings(
     "common.haptics.body": "Touch feedback is off on your phone, so FitCue can't buzz when you tap, finish a set or hit a PR. Open settings and turn on Touch feedback, under Haptics or Vibration & haptics.",
     "common.haptics.open": "Open settings",
     "common.haptics.later": "Not now",
+    "common.appLock.title": "Lock FitCue",
+    "common.appLock.body": "Use your fingerprint or your phone's PIN to open FitCue, so your plan and progress stay private.",
+    "common.appLock.enable": "Turn on app lock",
+    "common.appLock.later": "Not now",
   },
   {
     "common.tab.home": "होम",
@@ -62,5 +66,9 @@ export const common = defineStrings(
     "common.haptics.body": "आपके फ़ोन में टच फ़ीडबैक बंद है, इसलिए टैप करने, सेट पूरा करने या PR बनाने पर FitCue वाइब्रेट नहीं कर सकता। सेटिंग खोलें और हैप्टिक्स या वाइब्रेशन और हैप्टिक्स में टच फ़ीडबैक चालू करें।",
     "common.haptics.open": "सेटिंग खोलें",
     "common.haptics.later": "अभी नहीं",
+    "common.appLock.title": "FitCue लॉक करें",
+    "common.appLock.body": "FitCue खोलने के लिए अपना फ़िंगरप्रिंट या फ़ोन का PIN इस्तेमाल करें, ताकि आपका प्लान और प्रोग्रेस निजी रहे।",
+    "common.appLock.enable": "ऐप लॉक चालू करें",
+    "common.appLock.later": "अभी नहीं",
   },
 );

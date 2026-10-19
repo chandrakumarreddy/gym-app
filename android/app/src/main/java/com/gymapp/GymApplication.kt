@@ -29,5 +29,6 @@ class GymApplication : Application() {
         LynxEnv.inst().registerModule("NativeLocalStorageModule", NativeLocalStorageModule::class.java)
         LynxEnv.inst().registerModule("NativeSystemBarsModule", NativeSystemBarsModule::class.java)
         LynxEnv.inst().registerModule("NativeHapticsModule", NativeHapticsModule::class.java)
+        LynxEnv.inst().registerModule("NativeAppLockModule", NativeAppLockModule::class.java)
     }
 }

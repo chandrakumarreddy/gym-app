@@ -23,9 +23,12 @@
 
 .app-tabbar {
   position: absolute;
-  left: 24px;
-  right: 24px;
+  left: 0;
+  right: 0;
   bottom: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* End of a tab screen's scroll content, so the floating tab bar never covers the last item. */

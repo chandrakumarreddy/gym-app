@@ -3,10 +3,12 @@ import { useEffect, useRef } from "@lynx-js/react";
 import "./theme/tokens.css";
 import "./App.css";
 
+import { appLockAvailable, appLockEnabled } from "@/api/appLock.ts";
 import { hapticsEnabled } from "@/api/haptics.ts";
 import { isIOS } from "@/api/platform.ts";
 import { getJSON, setJSON } from "@/api/storage.ts";
 import { appReady, setFullBleed } from "@/api/systemBars.ts";
+import { AppLockPrompt } from "@/components/AppLockPrompt/AppLockPrompt.tsx";
 import { BottomSheet } from "@/components/BottomSheet/BottomSheet.tsx";
 import { HapticsPrompt } from "@/components/HapticsPrompt/HapticsPrompt.tsx";
 import { TabBar } from "@/components/TabBar/TabBar.tsx";
@@ -40,6 +42,7 @@ import { startRoute } from "@/state/startRoute.ts";
 import type { Route } from "@/types/route.ts";
 
 const HAPTICS_PROMPTED_KEY = "fitcue.hapticsPrompted";
+const APP_LOCK_PROMPTED_KEY = "fitcue.appLockPrompted";
 // Home holds the splash until its feed settles; never longer than this.
 const SPLASH_MAX_MS = 4000;
 
@@ -102,12 +105,13 @@ function OverlayHost() {
     <BottomSheet visible={overlay !== null} onDismiss={closeOverlay}>
       {shown?.kind === "locked" ? <LockedSheet {...shown.params} onClose={closeOverlay} /> : null}
       {shown?.kind === "haptics" ? <HapticsPrompt onClose={closeOverlay} /> : null}
+      {shown?.kind === "app-lock" ? <AppLockPrompt onClose={closeOverlay} /> : null}
     </BottomSheet>
   );
 }
 
 function Shell() {
-  const { route, depth, tab, showTabBar, openHapticsPrompt } = useRouter();
+  const { route, depth, tab, showTabBar, openHapticsPrompt, openAppLockPrompt } = useRouter();
   const layers = useScreenLayers(route, depth, tab);
   const fullBleed = route.name === "welcome";
   useEffect(() => setFullBleed(fullBleed), [fullBleed]);
@@ -120,10 +124,16 @@ function Shell() {
     return () => clearTimeout(id);
   }, []);
   const atHome = route.name === "home";
+  // One prompt per Home visit: touch feedback first, then the app lock offer.
   useEffect(() => {
-    if (!atHome || getJSON<boolean>(HAPTICS_PROMPTED_KEY) || hapticsEnabled()) return;
-    setJSON(HAPTICS_PROMPTED_KEY, true);
-    openHapticsPrompt();
+    if (!atHome) return;
+    if (!getJSON<boolean>(HAPTICS_PROMPTED_KEY) && !hapticsEnabled()) {
+      setJSON(HAPTICS_PROMPTED_KEY, true);
+      openHapticsPrompt();
+    } else if (!getJSON<boolean>(APP_LOCK_PROMPTED_KEY) && appLockAvailable() && !appLockEnabled()) {
+      setJSON(APP_LOCK_PROMPTED_KEY, true);
+      openAppLockPrompt();
+    }
   }, [atHome]);
 
   return (

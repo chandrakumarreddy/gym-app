@@ -2,6 +2,8 @@ package com.gymapp
 
 import android.Manifest
 import android.app.Activity
+import android.app.KeyguardManager
+import android.hardware.biometrics.BiometricPrompt
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,10 +13,13 @@ import android.animation.ObjectAnimator
 import android.os.Build
 import android.graphics.drawable.Animatable
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.os.SystemClock
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.view.animation.AccelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -37,6 +42,11 @@ class MainActivity : Activity() {
     // The rendered view waiting for JS to pick its start route before it's revealed.
     private var pending: LynxView? = null
     private var splashIconDoneAt = 0L
+    // Covers the app while the app lock is waiting for the fingerprint or screen lock.
+    private var lockCover: View? = null
+    private var authenticating = false
+    private var pendingAuth: ((Boolean) -> Unit)? = null
+    private var backgroundAt = 0L
 
     private val reloadReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = render()
@@ -70,6 +80,32 @@ class MainActivity : Activity() {
         }
     }
 
+    // Lock on launch and when coming back after RELOCK_MS in the background.
+    override fun onStart() {
+        super.onStart()
+        val away = backgroundAt == 0L || SystemClock.elapsedRealtime() - backgroundAt >= RELOCK_MS
+        if (away && !authenticating && NativeAppLockModule.isEnabled(this) && NativeAppLockModule.isAvailable(this)) lock()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (lockCover != null && !authenticating) container.post(::unlock)
+    }
+
+    override fun onStop() {
+        if (!isChangingConfigurations && !authenticating) backgroundAt = SystemClock.elapsedRealtime()
+        super.onStop()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode != REQUEST_UNLOCK) return
+        val done = pendingAuth
+        pendingAuth = null
+        done?.invoke(resultCode == RESULT_OK)
+    }
+
     override fun onDestroy() {
         if (BuildConfig.DEBUG) unregisterReceiver(reloadReceiver)
         for (i in 0 until container.childCount) (container.getChildAt(i) as? LynxView)?.destroy()
@@ -82,6 +118,84 @@ class MainActivity : Activity() {
     fun setFullBleed(value: Boolean) = runOnUiThread {
         fullBleed = value
         if (firstScreenShown) applyStatusBar()
+    }
+
+    // Ask for the fingerprint, falling back to the phone's PIN, pattern or password.
+    fun authenticate(onResult: (Boolean) -> Unit) = runOnUiThread {
+        if (authenticating) return@runOnUiThread onResult(false)
+        authenticating = true
+        val done = { ok: Boolean ->
+            authenticating = false
+            onResult(ok)
+        }
+        val title = getString(R.string.app_lock_title)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val builder = BiometricPrompt.Builder(this).setTitle(title)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                builder.setAllowedAuthenticators(
+                    android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_WEAK or
+                        android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                builder.setDeviceCredentialAllowed(true)
+            }
+            builder.build().authenticate(CancellationSignal(), mainExecutor, object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) = done(true)
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) = done(false)
+            })
+        } else {
+            @Suppress("DEPRECATION")
+            val intent = getSystemService(KeyguardManager::class.java)?.createConfirmDeviceCredentialIntent(title, null)
+            if (intent == null) return@runOnUiThread done(false)
+            pendingAuth = done
+            @Suppress("DEPRECATION")
+            startActivityForResult(intent, REQUEST_UNLOCK)
+        }
+    }
+
+    private fun lock() {
+        if (lockCover != null) return
+        val density = resources.displayMetrics.density
+        val icon = ImageView(this).apply { setImageDrawable(getDrawable(R.drawable.splash_icon_vector)) }
+        val title = TextView(this).apply {
+            text = getString(R.string.app_lock_title)
+            textSize = 20f
+            setTextColor(getColor(R.color.text))
+            gravity = Gravity.CENTER
+        }
+        val unlock = TextView(this).apply {
+            text = getString(R.string.app_lock_unlock)
+            textSize = 16f
+            setTextColor(getColor(R.color.ember))
+            gravity = Gravity.CENTER
+            val pad = (16 * density).toInt()
+            setPadding(pad, pad, pad, pad)
+            setOnClickListener { unlock() }
+        }
+        val column = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            val size = (SPLASH_ICON_DP / 2 * density).toInt()
+            addView(icon, LinearLayout.LayoutParams(size, size))
+            addView(title)
+            addView(unlock)
+        }
+        lockCover = FrameLayout(this).apply {
+            setBackgroundColor(getColor(R.color.bg))
+            isClickable = true
+            addView(column, FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER))
+        }
+        container.addView(lockCover)
+    }
+
+    private fun unlock() {
+        if (lockCover == null) return
+        authenticate { ok ->
+            if (!ok) return@authenticate
+            container.removeView(lockCover)
+            lockCover = null
+        }
     }
 
     private fun applyStatusBar() {
@@ -170,6 +284,8 @@ class MainActivity : Activity() {
         const val SPLASH_ICON_DP = 288
         const val SPLASH_ICON_MS = 1000L
         const val READY_TIMEOUT_MS = 3000L
+        const val RELOCK_MS = 60_000L
+        const val REQUEST_UNLOCK = 1
         const val RELOAD_ACTION = "com.gymapp.RELOAD"
         const val DEV_BUNDLE_URL = "http://localhost:3000/main.lynx.bundle"
     }
